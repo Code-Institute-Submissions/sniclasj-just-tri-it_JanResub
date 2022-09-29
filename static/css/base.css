@@ -3,9 +3,9 @@ html {
 }
 
 body {
-	background: url('/media/just-tri-it-homepage-image.png') no-repeat center center fixed;
+	/* background: url('/media/just-tri-it-homepage-image.png') no-repeat center center fixed;
 	background-size: cover;
-    height: calc(100vh - 164px);
+    height: 120vh; */
     color: #555;
     font-family: "Lato";
 }
