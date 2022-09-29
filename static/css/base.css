@@ -2,13 +2,12 @@ html {
     height: 100%;
 }
 
-/* Credit: Image url https://www.pngmart.com/image/423705/png/423704 */
 body {
-    background: url('/media/just-tri-it-homepage-image.png') no-repeat center center fixed;
-    background-size: cover;
+	background: url('/media/homepage_background_cropped.jpg') no-repeat center center fixed;
+	background-size: cover;
     height: calc(100vh - 164px);
     color: #555;
-    font-family: 'Lato';
+    font-family: "Lato";
 }
 
 /* from Bulma */
@@ -57,7 +56,11 @@ body {
     border: 1px solid black !important;
 }
 
-/* -------------------------------- Media Queries */
+.bg-black {
+    background: #000 !important;
+}
+
+/* --------------------------------- Media queries */
 
 /* Slightly larger container on xl screens */
 @media (min-width: 1200px) {
@@ -80,27 +83,3 @@ body {
         padding-top: 164px;
     }
 }
-
-/* -------------------------------- Media Queries */
-
-/* Slightly larger container on xl screens */
-@media (min-width: 1200px) {
-    .container {
-      max-width: 80%;
-    }
-  }
-  
-  /* fixed top navbar only on medium and up */
-  @media (min-width: 992px) {
-      .fixed-top-desktop-only {
-          position: fixed;
-          top: 0;
-          right: 0;
-          left: 0;
-          z-index: 1030;
-      }
-  
-      .header-container {
-          padding-top: 164px;
-      }
-  }
