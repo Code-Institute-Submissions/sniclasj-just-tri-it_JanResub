@@ -1,4 +1,5 @@
 from django.db import models
+from profile.models import Profile
 
 
 class Category(models.Model):
@@ -12,6 +13,8 @@ class Listing(models.Model):
     category = models.ForeignKey(
         'Category', null=False, blank=False, on_delete=models.CASCADE)
     name = models.CharField(max_length=254)
+    lister = models.ForeignKey(
+        Profile, null=False, blank=False, on_delete=models.CASCADE)
     condition = models.ForeignKey(
         'Condition', null=False, blank=False, on_delete=models.CASCADE)
     description = models.TextField()
