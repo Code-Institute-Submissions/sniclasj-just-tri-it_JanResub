@@ -3,14 +3,14 @@ from django.db import models
 # Create your models here.
 
 
-class Category(model.Model):
+class Category(models.Model):
     name = models.CharField(max_length=254)
 
     def __str__(self):
         return self.name
 
 
-class Listing(model.Model):
+class Listing(models.Model):
     category = models.ForeignKey(
         'Category', null=False, blank=False, on_delete=CASCADE)
     name = models.CharField(max_length=254)
@@ -24,7 +24,7 @@ class Listing(model.Model):
         return self.name
 
 
-class Condition(model.Model):
+class Condition(models.Model):
     status = models.CharField(max_length=254)
 
     def __str__(self):
