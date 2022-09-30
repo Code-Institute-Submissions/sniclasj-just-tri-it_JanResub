@@ -11,7 +11,11 @@ class Category(model.Model):
 
 
 class Listing(model.Model):
+    category = models.ForeignKey(
+        'Category', null=False, blank=False, on_delete=CASCADE)
     name = models.CharField(max_length=254)
+    condition = models.ForeignKey(
+        'Condition', null=False, blank=False, on_delete=CASCADE)
     description = models.TextField()
     price = models.DecimalField(max_digits=6, decimal_places=2)
     image = models.ImageField(null=True, blank=True)
