@@ -1,8 +1,12 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 
 class Profile(models.Model):
-    athlete = models.CharField(max_length=254)
+    athlete = models.OneToOneField(User, on_delete=models.CASCADE)
+    is_seller = models.BooleanField(
+        verbose_name='Is Seller?', null=False, default=False
+    )
 
     def __str__(self):
-        return self.athlete
+        return self.athlete.username
