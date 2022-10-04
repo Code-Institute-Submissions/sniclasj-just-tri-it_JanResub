@@ -6,7 +6,7 @@ from .models import Listing
 
 def all_listings(request):
 
-    listings = Listing.objects.all
+    listings = Listing.objects.all()
 
     context = {
         'listings': listings,
