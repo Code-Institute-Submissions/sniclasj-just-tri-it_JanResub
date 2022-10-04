@@ -82,6 +82,9 @@
             <div class="dropdown-menu border-0" aria-labelledby="user-options">
               {% if request.user.is_authenticated %}
               {% if request.user.is_superuser %}
+              <a href="" class="dropdown-item">Manage Sellers</a>
+              {% endif %}
+              {% if request.user.profile.is_seller %}
               <a href="" class="dropdown-item">Listing Admin</a>
               {% endif %}
               <a href="" class="dropdown-item">My Profile</a>
