@@ -1,5 +1,5 @@
 from django.db import models
-from profiles.models import Profile
+from django.contrib.auth.models import User
 
 
 class Category(models.Model):
@@ -18,7 +18,7 @@ class Listing(models.Model):
         'Category', null=False, blank=False, on_delete=models.CASCADE)
     name = models.CharField(max_length=254)
     lister = models.ForeignKey(
-        Profile, null=False, blank=False, on_delete=models.CASCADE)
+        User, null=False, blank=False, on_delete=models.CASCADE)
     condition = models.ForeignKey(
         'Condition', null=False, blank=False, on_delete=models.CASCADE)
     description = models.TextField()
