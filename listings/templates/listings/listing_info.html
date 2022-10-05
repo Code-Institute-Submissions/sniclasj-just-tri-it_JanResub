@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block page_header %}
+<div class="container header-container">
+    <div class="row">
+        <div class="col"></div>
+    </div>
+</div>
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col">
+            {{ listing }}
+            {{ listing.condition }}
+            {{ listing.description }}
+            {{ listing.price }}
+            {{ listing.image }}
+        </div>
+    </div>
+</div>
+{% endblock %}
