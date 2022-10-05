@@ -14,8 +14,7 @@
     <div class="row">
         <div class="col">
             {% for listing in listings %}
-            {{ listing }}
-            {{ listing.condition }}
+            <a href = "{% url 'listing_info' listing.id %}"> {{ listing.name }}</a>
             {% endfor %}
         </div>
     </div>
