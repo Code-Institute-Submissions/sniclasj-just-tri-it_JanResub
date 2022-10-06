@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect, reverse, get_object_or_404
 from .models import Listing, Category, Condition
 from .forms import ListingForm
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 
@@ -30,8 +31,13 @@ def listing_info(request, listing_id):
     return render(request, 'listings/listing_info.html', context)
 
 
+@login_required
 def add_listing(request):
     """ Add a listing to the store """
+    if not request.user.is_superuser:
+        messages.error(request, 'Sorry, only store owners can do that.')
+        return redirect(reverse('home'))
+
     if request.method == 'POST':
         form = ListingForm(request.POST, request.FILES)
         if form.is_valid():
@@ -52,8 +58,13 @@ def add_listing(request):
     return render(request, template, context)
 
 
+@login_required
 def edit_listing(request, listing_id):
     """ Edit a listing in the store """
+    if not request.user.is_superuser:
+        messages.error(request, 'Sorry, only store owners can do that.')
+        return redirect(reverse('home'))
+
     listing = get_object_or_404(Listing, pk=listing_id)
     if request.method == 'POST':
         form = ListingForm(request.POST, request.FILES, instance=listing)
@@ -77,8 +88,13 @@ def edit_listing(request, listing_id):
     return render(request, template, context)
 
 
+@login_required
 def delete_listing(request, listing_id):
     """ Delete a listing from the store """
+    if not request.user.is_superuser:
+        messages.error(request, 'Sorry, only store owners can do that.')
+        return redirect(reverse('home'))
+
     listing = get_object_or_404(Listing, pk=listing_id)
     listing.delete()
     messages.success(request, 'Listing deleted!')
