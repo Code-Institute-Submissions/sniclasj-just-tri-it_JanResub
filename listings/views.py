@@ -35,7 +35,7 @@ def add_listing(request):
     if request.method == 'POST':
         form = ListingForm(request.POST, request.FILES)
         if form.is_valid():
-            form.save()
+            listing = form.save()
             messages.success(request, 'Successfully added listing!')
             return redirect(reverse('listing_info', args=[listing.id]))
         else:
