@@ -75,3 +75,11 @@ def edit_listing(request, listing_id):
     }
 
     return render(request, template, context)
+
+
+def delete_listing(request, listing_id):
+    """ Delete a listing from the store """
+    listing = get_object_or_404(Listing, pk=listing_id)
+    listing.delete()
+    messages.success(request, 'Listing deleted!')
+    return redirect(reverse('listings'))
