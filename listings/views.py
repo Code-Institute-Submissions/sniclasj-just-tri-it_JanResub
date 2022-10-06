@@ -37,7 +37,7 @@ def add_listing(request):
         if form.is_valid():
             form.save()
             messages.success(request, 'Successfully added listing!')
-            return redirect(reverse('add_listing'))
+            return redirect(reverse('listing_info', args=[listing.id]))
         else:
             messages.error(
                 request, 'Listing error. Please ensure the form is valid.')
