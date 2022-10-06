@@ -4,11 +4,7 @@
 {% block content %}
 
 {% for profile in profiles %}
-<h1>
-    {{ profile.id }}
-    {{ profile.athlete }}
-    {{ profile.is_seller }}
-</h1>
+<a href="{% url 'profile_info' profile.id %}"> {{ profile.athlete }}</a>
 {% endfor %}
 
 {% endblock %}
