@@ -50,3 +50,28 @@ def add_listing(request):
     }
 
     return render(request, template, context)
+
+
+def edit_listing(request, listing_id):
+    """ Edit a listing in the store """
+    listing = get_object_or_404(Listing, pk=listing_id)
+    if request.method == 'POST':
+        form = ListingForm(request.POST, request.FILES, instance=listing)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Successfully updated listing!')
+            return redirect(reverse('listing_info', args=[listing.id]))
+        else:
+            messages.error(
+                request, 'Update error. Please ensure the form is valid.')
+    else:
+        form = ListingForm(instance=listing)
+        messages.info(request, f'You are editing {listing.name}')
+
+    template = 'listings/edit_listing.html'
+    context = {
+        'form': form,
+        'listing': listing,
+    }
+
+    return render(request, template, context)
