@@ -2,9 +2,9 @@
 {% load static %}
 
 {% block content %}
-<h1>
-    {{ profile.id }}
-    {{ profile.athlete }}
-    {{ profile.is_seller }}
-</h1>
+<ul>
+    <li> {{ profile.id }} </li>
+    <li> {{ profile.athlete }} </li>
+    <li> {{ profile.is_seller }} </li>
+</ul>
 {% endblock %}
