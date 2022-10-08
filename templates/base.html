@@ -85,7 +85,7 @@
               <a href="" class="dropdown-item">Profile Admin</a>
               {% endif %}
               {% if request.user.profile.is_seller %}
-              <a href="" class="dropdown-item">Listing Admin</a>
+              <a href="{% url 'listings' %}" class="dropdown-item">Listing Admin</a>
               {% endif %}
               <a href="{% url 'profile' %}" class="dropdown-item">Athlete Profile</a>
               <a href="{% url 'account_logout' %}" class="dropdown-item">Logout</a>
