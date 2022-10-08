@@ -17,3 +17,15 @@ def profile(request):
     }
 
     return render(request, template, context)
+
+
+def profile_admin(request):
+
+    profiles = Profile.objects.all()
+
+    context = {
+        'profiles': profiles,
+    }
+
+    """A view to return the listings page"""
+    return render(request, 'profiles/profile_admin.html', context)
