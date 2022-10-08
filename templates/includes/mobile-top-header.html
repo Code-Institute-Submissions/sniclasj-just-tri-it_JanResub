@@ -31,7 +31,10 @@
       <div class="dropdown-menu border-0" aria-labelledby="user-options">
           {% if request.user.is_authenticated %}
               {% if request.user.is_superuser %}
-                  <a href="{% url 'listings' %}" class="dropdown-item">Listing Admin</a>
+                  <a href="{% url 'profile_admin' %}" class="dropdown-item">Profile Admin</a>
+              {% endif %}
+              {% if request.user.profile.is_seller %}
+              <a href="{% url 'listings' %}" class="dropdown-item">Listing Admin</a>
               {% endif %}
               <a href="{% url 'profile' %}" class="dropdown-item">Athlete Profile</a>
               <a href="{% url 'account_logout' %}" class="dropdown-item">Logout</a>
