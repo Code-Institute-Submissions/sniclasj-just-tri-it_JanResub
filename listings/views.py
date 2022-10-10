@@ -34,7 +34,7 @@ def listing_info(request, listing_id):
 @login_required
 def add_listing(request):
     """ Add a listing to the store """
-    if not request.user.is_superuser:
+    if not request.user.profile.is_seller:
         messages.error(request, 'Sorry, only store owners can do that.')
         return redirect(reverse('home'))
 
@@ -61,7 +61,7 @@ def add_listing(request):
 @login_required
 def edit_listing(request, listing_id):
     """ Edit a listing in the store """
-    if not request.user.is_superuser:
+    if not request.user.profile.is_seller:
         messages.error(request, 'Sorry, only store owners can do that.')
         return redirect(reverse('home'))
 
@@ -91,7 +91,7 @@ def edit_listing(request, listing_id):
 @login_required
 def delete_listing(request, listing_id):
     """ Delete a listing from the store """
-    if not request.user.is_superuser:
+    if not request.user.profile.is_seller:
         messages.error(request, 'Sorry, only store owners can do that.')
         return redirect(reverse('home'))
 
