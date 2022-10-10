@@ -5,5 +5,6 @@ from . import views
 
 urlpatterns = [
     path('', views.profile, name='profile'),
-    path('admin/', views.profile_admin, name='profile_admin')
+    path('admin/', views.profile_admin, name='profile_admin'),
+    path('admin/<int:profile_id>', views.edit_seller_status, name='edit_seller_status')
 ]
