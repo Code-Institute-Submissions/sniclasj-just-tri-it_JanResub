@@ -17,7 +17,7 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col">
-                        {{ profile.athlete }}
+                        <a href="{% url 'edit_seller_status' profile.id %}"> {{ profile.athlete }} </a>
                     </div>
                     <div class="col">
                         {{ profile.is_seller }}
