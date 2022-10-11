@@ -16,7 +16,7 @@
             {% for listing in listings %}
             <a href="{% url 'listing_info' listing.id %}"> {{ listing.name }} {{ listing.lister }}</a>
 
-            {% if listing.lister|lower == request.user|lower %}
+            {% if listing.lister|lower == request.user|lower or request.user.is_superuser %}
             <small class="ml-3">
                 <a href="{% url 'edit_listing' listing.id %}">Edit</a> |
                 <a class="text-danger" href="{% url 'delete_listing' listing.id %}">Delete</a>
