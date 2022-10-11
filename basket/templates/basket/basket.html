@@ -37,6 +37,7 @@
                 </td>
             </tr>
             {% endfor %}
+            <a href="{% url 'checkout' %}"> Go to Checkout </a>
             {% else %}
             <p class="lead mb-5">Your basket is empty.</p>
             <a href="{% url 'listings' %}" class="btn btn-outline-black rounded-0 btn-lg">
