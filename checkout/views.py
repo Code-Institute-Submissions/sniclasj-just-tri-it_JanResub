@@ -14,12 +14,11 @@ def checkout(request):
     stripe_public_key = settings.STRIPE_PUBLIC_KEY
     stripe_secret_key = settings.STRIPE_SECRET_KEY
 
-    if request.method() == POST:
+    if request.method == 'POST':
         basket = request.session.get('basket', {})
 
         form_data = {
-            'first_name': request.POST['full_name'],
-            'last_name': request.POST['full_name'],
+            'full_name': request.POST['full_name'],
             'email': request.POST['email'],
             'phone_number': request.POST['phone_number'],
             'country': request.POST['country'],
@@ -53,21 +52,23 @@ def checkout(request):
                             order_line_item.save()
                 except Listing.DoesNotExist:
                     messages.error(request, (
-                        "One of the listings in your bag wasn't found in our database. "
+                        "One of the listings in your bag wasn't found. "
                         "Please call us for assistance!")
                     )
                     order.delete()
                     return redirect(reverse('view_basket'))
 
             request.session['save_info'] = 'save-info' in request.POST
-            return redirect(reverse('checkout_success', args=[order.order_number]))
+            return redirect(
+                reverse('checkout_success', args=[order.order_number]))
         else:
             messages.error(request, 'There was an error with your form. \
                 Please double check your information.')
     else:
         basket = request.session.get('basket', {})
         if not basket:
-            messages.error(request, "There's nothing in your basket at the moment")
+            messages.error(
+                request, "There's nothing in your basket at the moment")
             return redirect(reverse('listings'))
 
         current_basket = basket_contents(request)
