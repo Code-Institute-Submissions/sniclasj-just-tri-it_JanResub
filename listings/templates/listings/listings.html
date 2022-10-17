@@ -13,6 +13,13 @@
 <div class="container">
     <div class="row">
         <div class="col">
+            {% if request.user.profile.is_seller %}
+            <a href="{% url 'add_listing' %}">Add Listing</a>
+            {% endif %}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
             {% for listing in listings %}
             <a href="{% url 'listing_info' listing.id %}"> {{ listing.name }} {{ listing.lister }}</a>
 
