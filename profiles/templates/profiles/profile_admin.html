@@ -12,18 +12,17 @@
 {% block content %}
 <div class="container">
     <div class="row">
-        <div class="col">
+        <div class="col s12">
             {% for profile in profiles %}
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col">
-                        <a href="{% url 'edit_seller_status' profile.id %}"> {{ profile.athlete }} </a>
-                    </div>
-                    <div class="col">
-                        {{ profile.is_seller }}
-                    </div>
-                </div>
-            </div>
+            <ul class="collection">
+                <li class="collection-item avatar">
+                  <img src="" alt="" class="circle">
+                  <span class="title">{{ profile.athlete }}</span>
+                  <p> Is Seller?: {{ profile.is_seller }} <br>
+                    <a href="{% url 'edit_seller_status' profile.id %}"> Edit Seller Status </a>
+                  </p>
+                </li>
+            </ul>
             {% endfor %}
         </div>
     </div>
