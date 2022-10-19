@@ -10,9 +10,17 @@ from django.contrib.auth.decorators import login_required
 def all_listings(request):
 
     listings = Listing.objects.all()
+    categories = None
+
+    if request.GET:
+        if 'category' in request.GET:
+            categories = request.GET['category'].split(',')
+            listings = listings.filter(category__name__in=categories)
+            categories = Category.objects.filter(name__in=categories)
 
     context = {
         'listings': listings,
+        'current_categories': categories,
     }
 
     """A view to return the listings page"""
