@@ -89,6 +89,16 @@
         {% endif %}
         <li><a href="{% url 'profile' %}">Athlete Profile</a></li>
         <li><a href="{% url 'account_logout' %}">Logout</a></li>
+        <li>
+          <a href="{% url 'view_basket' %}">
+            <i class="fas fa-shopping-bag fa-lg"></i>
+            {% if grand_total %}
+            £{{ grand_total|floatformat:2 }}
+            {% else %}
+            £0.00
+            {% endif %}
+          </a>
+        </li>
         {% else %}
         <li><a href="{% url 'account_signup' %}">Register</a></li>
         <li><a href="{% url 'account_login' %}">Login</a></li>
@@ -102,20 +112,6 @@
         <li class="tab"><a href="#test2">Swim</a></li>
         <li class="tab"><a href="#test3">Bike</a></li>
         <li class="tab"><a href="#test4">Run</a></li>
-        <li class="tab">
-          <a href="{% url 'view_basket' %}">
-            <div class="center-align-text">
-              <div><i class="fas fa-shopping-bag fa-lg"></i></div>
-              <p>
-                {% if grand_total %}
-                £{{ grand_total|floatformat:2 }}
-                {% else %}
-                £0.00
-                {% endif %}
-              </p>
-            </div>
-          </a>
-        </li>
       </ul>
     </div>
   </nav>
@@ -130,6 +126,16 @@
     {% endif %}
     <li><a href="{% url 'profile' %}">Athlete Profile</a></li>
     <li><a href="{% url 'account_logout' %}">Log Out</a></li>
+    <li>
+      <a href="{% url 'view_basket' %}">
+        <i class="fas fa-shopping-bag fa-lg"></i>
+        {% if grand_total %}
+        £{{ grand_total|floatformat:2 }}
+        {% else %}
+        £0.00
+        {% endif %}
+      </a>
+    </li>
     {% else %}
     <li><a href="{% url 'account_login' %}">Login</a></li>
     <li><a href="{% url 'account_signup' %}">Register</a></li>
