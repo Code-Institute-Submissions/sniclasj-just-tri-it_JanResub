@@ -11,6 +11,7 @@ def all_listings(request):
 
     listings = Listing.objects.all()
     categories = None
+    conditions = None
 
     if request.GET:
         if 'category' in request.GET:
@@ -18,9 +19,15 @@ def all_listings(request):
             listings = listings.filter(category__name__in=categories)
             categories = Category.objects.filter(name__in=categories)
 
+        if 'condition' in request.GET:
+            conditions = request.GET['condition'].split(',')
+            listings = listings.filter(condition__status__in=conditions)
+            conditions = Condition.objects.filter(status__in=conditions)
+
     context = {
         'listings': listings,
         'current_categories': categories,
+        'current_conditions': conditions,
     }
 
     """A view to return the listings page"""
