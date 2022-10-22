@@ -12,16 +12,17 @@
 {% block content %}
 <div class="overlay"></div>
 <div class="container">
+
     <div class="row">
         <div class="col">
             <hr>
-            <h2 class="logo-font mb-4">Shopping Basket</h2>
+            <h2 class="center-align">Shopping Basket</h2>
             <hr>
         </div>
     </div>
 
     <div class="row">
-        <div class="col">
+        <div class="col l6">
             {% if basket_items %}
             <table class="stripped">
                 <thead>
@@ -32,7 +33,7 @@
                     </tr>
                 </thead>
 
-                
+
                 <tbody>
                     {% for item in basket_items %}
                     <tr>
@@ -43,18 +44,31 @@
                     {% endfor %}
                 </tbody>
             </table>
-            
-            <a href="{% url 'checkout' %}"> Go to Checkout </a>
+        </div>
+
+        <div class="col s6">
+            <h6><strong>Bag Total: £{{ total|floatformat:2 }}</strong></h6>
+            <h6>Delivery: £{{ delivery|floatformat:2 }}</h6>
+            <h4 class="mt-4"><strong>Grand Total: £{{ grand_total|floatformat:2 }}</strong></h4>
+            {% if free_delivery_delta > 0 %}
+            <p class="mb-1 text-danger">
+                You could get free delivery by spending just <strong>${{ free_delivery_delta }}</strong> more!
+            </p>
+            {% endif %}
+        </div>
+
+        <div class="col s12">
+            <a href="{% url 'checkout' %}" class="btn-red"> Go to Checkout </a>
             {% else %}
             <p class="lead mb-5">Your basket is empty.</p>
-            <a href="{% url 'listings' %}" class="btn btn-outline-black rounded-0 btn-lg">
+            <a href="{% url 'listings' %}" class="btn-red">
                 <span class="icon">
                     <i class="fas fa-chevron-left"></i>
                 </span>
                 <span class="text-uppercase">Keep Shopping</span>
             </a>
-            {% endif %}
         </div>
+        {% endif %}
     </div>
 </div>
 {% endblock %}
