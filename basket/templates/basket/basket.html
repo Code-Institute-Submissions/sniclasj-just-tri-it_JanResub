@@ -23,20 +23,27 @@
     <div class="row">
         <div class="col">
             {% if basket_items %}
-            <div class="table-responsive rounded"></div>
-            {% for item in basket_items %}
-            <tr>
-                <td class="py-3">
-                    <p class="my-0"><strong>{{ item.listing.name }}</strong></p>
-                </td>
-                <td class="py-3 w-25">
-                    <p class="my-0">{{ item.quantity }}</p>
-                </td>
-                <td class="py-3">
-                    <p class="my-0">£{{ item.listing.price }}</p>
-                </td>
-            </tr>
-            {% endfor %}
+            <table class="stripped">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Quantitiy</th>
+                        <th>Price</th>
+                    </tr>
+                </thead>
+
+                
+                <tbody>
+                    {% for item in basket_items %}
+                    <tr>
+                        <td>{{ item.listing.name }}</td>
+                        <td>{{ item.quantity }}</td>
+                        <td>£{{ item.listing.price }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            
             <a href="{% url 'checkout' %}"> Go to Checkout </a>
             {% else %}
             <p class="lead mb-5">Your basket is empty.</p>
