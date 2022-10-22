@@ -6,7 +6,7 @@
 {% endblock %}
 
 {% block page_header %}
-<div class="container header-container">
+<div class="container">
     <div class="row">
         <div class="col"></div>
     </div>
@@ -18,7 +18,7 @@
     <div class="row">
         <div class="col s12">
             <hr>
-            <h3 class="logo-font mb-4">Welcome {{ profile.athlete }}.</h3>
+            <h3>Welcome {{ profile.athlete }}.</h3>
             <hr>
         </div>
     </div>
@@ -28,7 +28,7 @@
             <form action="{% url 'profile' %}" method="POST" id="profile-update-form">
                 {% csrf_token %}
                 {{ forma }}
-                <button class="btn btn-black rounded-0 text-uppercase float-right">Update Information</button>
+                <button class="btn pink">Update Information</button>
             </form>
         </div>
         <div class="col s6">
