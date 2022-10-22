@@ -89,6 +89,9 @@
         {% endif %}
         <li><a href="{% url 'profile' %}">Athlete Profile</a></li>
         <li><a href="{% url 'account_logout' %}">Logout</a></li>
+        {% else %}
+        <li><a href="{% url 'account_login' %}">Login</a></li>
+        <li><a href="{% url 'account_signup' %}">Register</a></li>
         <li>
           <a href="{% url 'view_basket' %}">
             <i class="fas fa-shopping-bag fa-lg"></i>
@@ -99,9 +102,6 @@
             {% endif %}
           </a>
         </li>
-        {% else %}
-        <li><a href="{% url 'account_signup' %}">Register</a></li>
-        <li><a href="{% url 'account_login' %}">Login</a></li>
         {% endif %}
       </ul>
     </div>
@@ -130,6 +130,9 @@
     {% endif %}
     <li><a href="{% url 'profile' %}">Athlete Profile</a></li>
     <li><a href="{% url 'account_logout' %}">Log Out</a></li>
+    {% else %}
+    <li><a href="{% url 'account_login' %}">Login</a></li>
+    <li><a href="{% url 'account_signup' %}">Register</a></li>
     <li>
       <a href="{% url 'view_basket' %}">
         <i class="fas fa-shopping-bag fa-lg"></i>
@@ -140,9 +143,6 @@
         {% endif %}
       </a>
     </li>
-    {% else %}
-    <li><a href="{% url 'account_login' %}">Login</a></li>
-    <li><a href="{% url 'account_signup' %}">Register</a></li>
     {% endif %}
   </ul>
 
