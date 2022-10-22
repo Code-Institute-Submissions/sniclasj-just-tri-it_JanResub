@@ -2,7 +2,7 @@
 {% load static %}
 
 {% block page_header %}
-<div class="container header-container">
+<div class="container">
     <div class="row">
         <div class="col"></div>
     </div>
@@ -21,8 +21,8 @@
                     {% csrf_token %}
                     {{ form }}
                     <div class="text-right">
-                        <a class="btn btn-outline-black rounded-0" href="{% url 'listings' %}">Cancel</a>
-                        <button class="btn btn-black rounded-0" type="submit">Update Listing</button>
+                        <a class="btn red" href="{% url 'listings' %}">Cancel</a>
+                        <button class="btn pink" type="submit">Update Listing</button>
                     </div>
                 </form>
             </div>
