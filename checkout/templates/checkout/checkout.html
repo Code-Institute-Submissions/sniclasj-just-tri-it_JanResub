@@ -49,8 +49,6 @@
                 </div>
                 <div class="col-7">
                     <p class="my-0"><strong>{{ item.listing.name }}</strong></p>
-                    <p class="my-0 small">Size:
-                        {% if item.listing.has_sizes %}{{ item.size|upper }}{% else %}N/A{% endif %}</p>
                     <p class="my-0 small text-muted">Qty: {{ item.quantity }}</p>
                 </div>
                 <div class="col-3 text-right">
@@ -72,17 +70,17 @@
                 </div>
             </div>
         </div>
-        <div class="col-12 col-lg-6">
-            <p class="text-muted">Please fill out the form below to complete your order</p>
+        <div class="col 12 col l6">
+            <p>Please fill out the form below to complete your order</p>
             <form action="{% url 'checkout' %}" method="POST" id="payment-form">
                 {% csrf_token %}
-                <fieldset class="rounded px-3 mb-5">
-                    <legend class="fieldset-label small text-black px-2 w-auto">infos</legend>
+                <fieldset>
+                    <legend>Details</legend>
                     {{ order_form.full_name }}
                     {{ order_form.email }}
                 </fieldset>
-                <fieldset class="rounded px-3 mb-5">
-                    <legend class="fieldset-label small text-black px-2 w-auto">Delivery</legend>
+                <fieldset>
+                    <legend>Delivery</legend>
                     {{ order_form.phone_number }}
                     {{ order_form.country }}
                     {{ order_form.postcode }}
@@ -90,7 +88,7 @@
                     {{ order_form.street_address1 }}
                     {{ order_form.street_address2 }}
                     {{ order_form.county  }}
-                    <div class="form-check form-check-inline float-right mr-0">
+                    <div>
                         {% if user.is_authenticated %}
                         <label for="save-info-box">
                             <input type="checkbox" id="save-info-box" />
@@ -98,15 +96,15 @@
                                 profile</span>
                         </label>
                         {% else %}
-                        <label class="form-check-label" for="id-save-info">
-                            <a class="text-info" href="{% url 'account_signup' %}">Create an account</a> or
-                            <a class="text-info" href="{% url 'account_login' %}">login</a> to save this information
+                        <label for="save-info-box">
+                            <a href="{% url 'account_signup' %}">Create an account</a> or
+                            <a href="{% url 'account_login' %}">login</a> to save this information
                         </label>
                         {% endif %}
                     </div>
                 </fieldset>
-                <fieldset class="px-3">
-                    <legend class="fieldset-label small text-black px-2 w-auto">Payment</legend>
+                <fieldset>
+                    <legend>Payment</legend>
                     <!-- A Stripe card element will go here -->
                     <div class="mb-3" id="card-element"></div>
                     <!-- Used to display form errors -->
@@ -115,20 +113,20 @@
                     <input type="hidden" value="{{ client_secret }}" name="client_secret">
                 </fieldset>
 
-                <div class="submit-button text-right mt-5 mb-2">
-                    <a href="{% url 'view_basket' %}" class="btn btn-outline-black rounded-0">
+                <div>
+                    <a href="{% url 'view_basket' %}" class="btn pink">
                         <span class="icon">
                             <i class="fas fa-chevron-left"></i>
                         </span>
-                        <span class="font-weight-bold">Adjust Basket</span>
+                        <span>Adjust Basket</span>
                     </a>
-                    <button id="submit-button" class="btn btn-black rounded-0">
-                        <span class="font-weight-bold">Complete Order</span>
+                    <button class="btn pink">
+                        <span>Complete Order</span>
                         <span class="icon">
                             <i class="fas fa-lock"></i>
                         </span>
                     </button>
-                    <p class="small text-danger my-0">
+                    <p class="red-text">
                         <span class="icon">
                             <i class="fas fa-exclamation-circle"></i>
                         </span>
