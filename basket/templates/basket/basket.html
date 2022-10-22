@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% load static %}
+{% load basket_tools %}
 
 {% block page_header %}
 <div class="container header-container">
@@ -28,8 +29,9 @@
                 <thead>
                     <tr>
                         <th>Name</th>
-                        <th>Quantitiy</th>
                         <th>Price</th>
+                        <th>Quantitiy</th>
+                        <th>Sub-Total</th>
                     </tr>
                 </thead>
 
@@ -37,6 +39,7 @@
                     {% for item in basket_items %}
                     <tr>
                         <td>{{ item.listing.name }}</td>
+                        <td>£{{ item.listing.price }}</td>
                         <td>
                             <form class="form form-update" action="{% url 'amend_basket' item.item_id %}" method="POST">
                                 {% csrf_token %}
@@ -45,7 +48,7 @@
                             </form>
                             <a class="update-button btn-small teal">Update</a> | <a id="remove_{{ item.item_id }}" class="remove-button btn-small red">Remove</a>
                         </td>
-                        <td>£{{ item.listing.price }}</td>
+                        <td>£{{ item.listing.price | calc_subtotal:item.quantity }}</td>
                     </tr>
                     {% endfor %}
                 </tbody>
