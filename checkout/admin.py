@@ -29,5 +29,4 @@ class OrderAdmin(admin.ModelAdmin):
     ordering = ('-date',)
 
 
-admin.site.register(Order)
-admin.site.register(OrderLineItem)
+admin.site.register(Order, OrderAdmin)
