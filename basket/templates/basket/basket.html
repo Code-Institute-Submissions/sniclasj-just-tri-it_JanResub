@@ -33,12 +33,18 @@
                     </tr>
                 </thead>
 
-
                 <tbody>
                     {% for item in basket_items %}
                     <tr>
                         <td>{{ item.listing.name }}</td>
-                        <td>{{ item.quantity }}</td>
+                        <td>
+                            <form class="form form-update" action="{% url 'amend_basket' item.item_id %}" method="POST">
+                                {% csrf_token %}
+                                <input class="center-align" type="number" name="quantity" value="{{ item.quantity }}"
+                                    min="1" max="99">
+                            </form>
+                            <a class="update-button btn-small teal">Update</a> | <a id="remove_{{ item.item_id }}" class="remove-button btn-small red">Remove</a>
+                        </td>
                         <td>£{{ item.listing.price }}</td>
                     </tr>
                     {% endfor %}
@@ -47,21 +53,21 @@
         </div>
 
         <div class="col s6">
-            <h6><strong>Bag Total: £{{ total|floatformat:2 }}</strong></h6>
+            <h6><strong>Basket Total: £{{ total|floatformat:2 }}</strong></h6>
             <h6>Delivery: £{{ delivery|floatformat:2 }}</h6>
             <h4 class="mt-4"><strong>Grand Total: £{{ grand_total|floatformat:2 }}</strong></h4>
             {% if free_delivery_delta > 0 %}
-            <p class="mb-1 text-danger">
-                You could get free delivery by spending just <strong>${{ free_delivery_delta }}</strong> more!
+            <p class="text-red">
+                You could get free delivery by spending just <strong>£{{ free_delivery_delta }}</strong> more!
             </p>
             {% endif %}
         </div>
 
         <div class="col s12">
-            <a href="{% url 'checkout' %}" class="btn-red"> Go to Checkout </a>
+            <a href="{% url 'checkout' %}" class="btn pink"> Go to Checkout </a>
             {% else %}
             <p class="lead mb-5">Your basket is empty.</p>
-            <a href="{% url 'listings' %}" class="btn-red">
+            <a href="{% url 'listings' %}" class="btn red">
                 <span class="icon">
                     <i class="fas fa-chevron-left"></i>
                 </span>
@@ -71,4 +77,28 @@
         {% endif %}
     </div>
 </div>
+{% endblock %}
+
+
+{% block postloadjs %}
+<script type="text/javascript">
+    // Update quantity on click
+    $('.update-button').click(function(e) {
+        var form = $(this).prev('.form-update');
+        form.submit();
+    })
+
+    // Remove item and reload on click
+    $('.remove-button').click(function(e) {
+    var csrfToken = "{{ csrf_token }}";
+    var itemId = $(this).attr('id').split('remove_')[1];
+    var url = `/basket/remove/${itemId}/`;
+    var data = {'csrfmiddlewaretoken': csrfToken,};
+
+    $.post(url, data)
+        .done(function() {
+            location.reload();
+        });
+    })
+</script>
 {% endblock %}
