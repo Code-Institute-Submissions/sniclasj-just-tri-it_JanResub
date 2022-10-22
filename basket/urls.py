@@ -3,5 +3,7 @@ from . import views
 
 urlpatterns = [
     path('', views.view_basket, name='view_basket'),
-    path('add/<int:item_id>', views.add_to_basket, name='add_to_basket')
+    path('add/<int:item_id>/', views.add_to_basket, name='add_to_basket'),
+    path('amend/<item_id>/', views.amend_basket, name='amend_basket'),
+    path('remove/<item_id>/', views.remove_from_basket, name='remove_from_basket'),
 ]
