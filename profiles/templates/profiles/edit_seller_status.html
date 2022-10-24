@@ -19,7 +19,10 @@
             <div class="col">
                 <form method="POST" action="{% url 'edit_seller_status' profile.id %}" class="form mb-2" enctype="multipart/form-data">
                     {% csrf_token %}
-                    {{ formb }}
+                    <label for="edit-seller-status-box">
+                        <input type="checkbox" id="edit-seller-status-box" />
+                        <span>Is Seller?</span>
+                    </label>
                     <div class="text-right">
                         <a class="btn red" href="{% url 'profile_admin' %}">Cancel</a>
                         <button class="btn pink" type="submit">Update Seller Status</button>
