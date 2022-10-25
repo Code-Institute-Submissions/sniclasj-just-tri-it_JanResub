@@ -2,7 +2,7 @@
 {% load static %}
 
 {% block page_header %}
-<div class="container header-container">
+<div class="container">
     <div class="row">
         <div class="col"></div>
     </div>
@@ -17,13 +17,13 @@
         </div>
         <div class="row">
             <div class="col">
-                <form method="POST" action="{% url 'edit_seller_status' profile.id %}" class="form mb-2" enctype="multipart/form-data">
+                <form method="POST" action="{% url 'edit_seller_status' profile.id %}" enctype="multipart/form-data">
                     {% csrf_token %}
                     <label for="edit-seller-status-box">
                         <input type="checkbox" id="edit-seller-status-box" />
                         <span>Is Seller?</span>
                     </label>
-                    <div class="text-right">
+                    <div>
                         <a class="btn red" href="{% url 'profile_admin' %}">Cancel</a>
                         <button class="btn pink" type="submit">Update Seller Status</button>
                     </div>
