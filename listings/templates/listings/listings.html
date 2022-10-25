@@ -14,57 +14,55 @@
     <div class="row center-align">
         <div class="col s12">
             {% if request.user.profile.is_seller %}
-            <a href="{% url 'add_listing' %}"class="waves-effect waves-light btn pink">Add Listing</a>
+            <a href="{% url 'add_listing' %}" class="waves-effect waves-light btn pink">Add Listing</a>
             {% endif %}
         </div>
     </div>
     <div class="row">
-        <div class="col">
-            {% for listing in listings %}
-            <div class="col s3">
-                <div class="card">
-                    <div class="card-image">
+        {% for listing in listings %}
+        <div class="col l3 m6 s12">
+            <div class="card">
+                <div class="card-image">
                     {% if listing.image %}
-                        <img src="{{ listing.image.url }}">
-                        <span class="card-title"></span>
+                    <img src="{{ listing.image.url }}">
                     {% endif %}
-                    </div>
-                    <div class="card-content">
-                        <p>{{ listing.name }}</p>
-                    </div>
-                    <div class="card-action">
-                        <a href="{% url 'listing_info' listing.id %}">View</a>
-                    </div>
                 </div>
-                {% if listing.lister|lower == request.user|lower or request.user.is_superuser %}
-                <div class="row center-align">
-                    <a href="{% url 'edit_listing' listing.id %}">Edit</a>
-                    <a href="#modal-{{ listing.id }}" class="modal-trigger red-text">Delete</a>
+                <div class="card-content">
+                    <p>{{ listing.name }}</p>
                 </div>
-                <!-- Modal Structure -->
-                <div id="modal-{{ listing.id }}" class="modal">
-                    <div class="modal-content">
-                        <h4>Are you sure?</h4>
-                        <p>{{ listing.name }} will be permanently deleted!</p>
-                    </div>
-                    <div class="modal-footer">
-                        <a href="{% url 'delete_listing' listing.id %}" class="modal-close waves-effect waves-red  btn-red btn-flat">Delete</a>
-                        <a href="" class="modal-close waves-effect waves-green btn-flat">Cancel</a>
-                    </div>
+                <div class="card-action">
+                    <a href="{% url 'listing_info' listing.id %}">View Listing</a>
                 </div>
-                {% endif %}
             </div>
-            {% endfor %}
+            {% if listing.lister|lower == request.user|lower or request.user.is_superuser %}
+            <div class="row center-align">
+                <a href="{% url 'edit_listing' listing.id %}">Edit</a> | 
+                <a href="#modal-{{ listing.id }}" class="modal-trigger red-text">Delete</a>
+            </div>
+            <!-- Modal Structure -->
+            <div id="modal-{{ listing.id }}" class="modal">
+                <div class="modal-content">
+                    <h4>Are you sure?</h4>
+                    <p>{{ listing.name }} will be permanently deleted!</p>
+                </div>
+                <div class="modal-footer">
+                    <a href="{% url 'delete_listing' listing.id %}"
+                        class="modal-close btn-flat red-text">Delete</a>
+                    <a href="" class="modal-close btn-flat green-text">Cancel</a>
+                </div>
+            </div>
+            {% endif %}
         </div>
+        {% endfor %}
     </div>
 </div>
 {% endblock %}
 
 {% block postloadjs %}
 <script>
-document.addEventListener('DOMContentLoaded', function() {
-  let modal = document.querySelectorAll('.modal');
-  M.Modal.init(modal);
-});
+    document.addEventListener('DOMContentLoaded', function () {
+        let modal = document.querySelectorAll('.modal');
+        M.Modal.init(modal);
+    });
 </script>
 {% endblock %}
