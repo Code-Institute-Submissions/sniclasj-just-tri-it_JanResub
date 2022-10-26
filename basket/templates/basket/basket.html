@@ -13,7 +13,7 @@
 {% block content %}
 <div class="container">
     <div class="row">
-        <div class="col">
+        <div class="col s12">
             <hr>
             <h2 class="center-align">Shopping Basket</h2>
             <hr>
@@ -22,8 +22,9 @@
 
     <div class="row">
         <div class="col l6">
+            <h4>Basket Summary</h4>
             {% if basket_items %}
-            <table class="stripped">
+            <table class="striped">
                 <thead>
                     <tr>
                         <th>Name</th>
@@ -53,18 +54,34 @@
             </table>
         </div>
 
-        <div class="col s6">
-            <h6><strong>Basket Total: £{{ total|floatformat:2 }}</strong></h6>
-            <h6>Delivery: £{{ delivery|floatformat:2 }}</h6>
-            <h4 class="mt-4"><strong>Grand Total: £{{ grand_total|floatformat:2 }}</strong></h4>
+        <div class="col l6">
+            <h4>Cost Summary</h4>
+            <table class="striped">
+            <thead>
+                <tr>
+                    <th>Basket Total</th>
+                    <th>Delivery</th>
+                    <th>Grand Total</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr>
+                    <td>£{{ total|floatformat:2 }}</td>
+                    <td>£{{ delivery|floatformat:2 }}</td>
+                    <td>£{{ grand_total|floatformat:2 }}</td>
+                </tr>
+            </tbody>
+            </table>
+
             {% if free_delivery_delta > 0 %}
-            <p class="text-red">
+            <p class="red-text">
                 You could get free delivery by spending just <strong>£{{ free_delivery_delta }}</strong> more!
             </p>
             {% endif %}
         </div>
 
-        <div class="col s12">
+        <div class="col s12 center-align">
             <a href="{% url 'checkout' %}" class="btn pink"> Go to Checkout </a>
             {% else %}
             <p class="lead mb-5">Your basket is empty.</p>
