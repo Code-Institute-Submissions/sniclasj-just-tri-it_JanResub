@@ -17,7 +17,7 @@
 {% block content %}
 <div class="container">
     <div class="row">
-        <div class="col">
+        <div class="col s12 center-align">
             <hr>
             <h2>Checkout</h2>
             <hr>
@@ -25,51 +25,55 @@
     </div>
 
     <div class="row">
-        <div class="col 12 col l6">
-            <p class="text-muted">Order Summary ({{ listing_count }})</p>
+        <div class="col l6">
+            <h4 class="text-muted">Order Summary ({{ listing_count }})</h4>
             <div class="row">
-                <div class="col">
-                    <p>Item</p>
-                </div>
-                <div class="col">
-                    <p>Subtotal</p>
+                <div class="col l6">
+                    <table class="striped">
+                        <thead>
+                            <tr>
+                                <th>Item</th>
+                                <th>Qty</th>
+                                <th>Sub-Total</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            {% for item in basket_items %}
+                            <tr>
+                                <td>{{ item.listing.name }}</td>
+                                <td>{{ item.quantity }}</td>
+                                <td>£{{ item.listing.price | calc_subtotal:item.quantity }}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
                 </div>
             </div>
-            {% for item in basket_items %}
-            <div class="row">
-                <div class="col">
-                    <a href="{% url 'listing_info' item.listing.id %}">
-                        {% if item.listing.image %}
-                        <img class="w-100" src="{{ item.listing.image.url }}" alt="{{ listing.name }}">
-                        {% else %}
-                        <img class="w-100" src="{{ MEDIA_URL }}noimage.png" alt="{{ listing.name }}">
-                        {% endif %}
-                    </a>
-                </div>
-                <div class="col">
-                    <p><strong>{{ item.listing.name }}</strong></p>
-                    <p>Qty: {{ item.quantity }}</p>
-                </div>
-                <div class="col">
-                    <p>£{{ item.listing.price | calc_subtotal:item.quantity }}</p>
-                </div>
-            </div>
-            {% endfor %}
             <hr>
             <div class="row">
-                <div class="col">
-                    <p>Order Total:</p>
-                    <p>Delivery:</p>
-                    <p>Grand Total:</p>
-                </div>
-                <div class="col">
-                    <p>£{{ total | floatformat:2 }}</p>
-                    <p>£{{ delivery | floatformat:2 }}</p>
-                    <p><strong>£{{ grand_total | floatformat:2 }}</strong></p>
+                <div class="col l6">
+                    <table class="striped">
+                        <thead>
+                            <tr>
+                                <th>Order Total</th>
+                                <th>Delivery</th>
+                                <th>Grand Total</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            <tr>
+                                <td>£{{ total | floatformat:2 }}</td>
+                                <td>£{{ delivery | floatformat:2 }}</td>
+                                <td>£{{ grand_total | floatformat:2 }}</td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
-        <div class="col 12 col l6">
+        <div class="col l6">
             <p>Please fill out the form below to complete your order</p>
             <form action="{% url 'checkout' %}" method="POST" id="payment-form">
                 {% csrf_token %}
@@ -136,6 +140,7 @@
         </div>
     </div>
 </div>
+
 <div id="loading-overlay">
     <h1 class="text-light logo-font loading-spinner">
         <span class="icon">
