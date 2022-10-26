@@ -73,16 +73,17 @@
                 </tr>
             </tbody>
             </table>
-
+        </div>
+    </div>
+    
+    <div class="row">
+        <div class="col s12 center-align">
+            <a href="{% url 'checkout' %}" class="btn pink"> Go to Checkout </a>
             {% if free_delivery_delta > 0 %}
             <p class="red-text">
                 You could get free delivery by spending just <strong>£{{ free_delivery_delta }}</strong> more!
             </p>
             {% endif %}
-        </div>
-
-        <div class="col s12 center-align">
-            <a href="{% url 'checkout' %}" class="btn pink"> Go to Checkout </a>
             {% else %}
             <p class="lead mb-5">Your basket is empty.</p>
             <a href="{% url 'listings' %}" class="btn red">
@@ -92,8 +93,8 @@
                 <span class="text-uppercase">Keep Shopping</span>
             </a>
         </div>
-        {% endif %}
     </div>
+        {% endif %}
 </div>
 {% endblock %}
 
