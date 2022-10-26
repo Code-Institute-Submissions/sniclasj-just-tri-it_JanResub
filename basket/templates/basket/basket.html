@@ -45,7 +45,7 @@
                                 <input class="center-align" type="number" name="quantity" value="{{ item.quantity }}"
                                     min="1" max="99">
                             </form>
-                            <a class="update-button btn-small teal">Update</a> | <a id="remove_{{ item.item_id }}" class="remove-button btn-small red">Remove</a>
+                            <a class="update-button btn-small xs-btn teal">Update</a> | <a id="remove_{{ item.item_id }}" class="remove-button btn-small xs-btn red">Remove</a>
                         </td>
                         <td>£{{ item.listing.price | calc_subtotal:item.quantity }}</td>
                     </tr>
