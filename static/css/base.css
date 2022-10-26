@@ -2,3 +2,10 @@ body {
     color: #555;
     font-family: "Luckiest Guy";
 }
+
+.xs-btn {
+    font-size: 9px !important;
+    line-height: 18px !important;
+    height: 18px !important;
+    padding: 0 5px !important;
+}
