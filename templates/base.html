@@ -42,7 +42,7 @@
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.1/js/materialize.min.js"
     integrity="sha256-SrBfGi+Zp2LhAvy9M1bWOCXztRU9Ztztxmu5BcYPcPE=" crossorigin="anonymous"></script>
-  
+
   <script>
     $(document).ready(function () {
 
@@ -112,20 +112,32 @@
         {% endif %}
       </ul>
     </div>
-
-    <div class="nav-content">
-      <ul class="tabs tabs-transparent">
-        <li class="tab"><a href="{% url 'listings' %}">All Listings</a></li>
-        <li class="tab"><a href="{% url 'listings' %}?category=Swim">Swim</a></li>
-        <li class="tab"><a href="{% url 'listings' %}?category=Bike">Bike</a></li>
-        <li class="tab"><a href="{% url 'listings' %}?category=Run">Run</a></li>
-        <li class="tab"><a href="{% url 'listings' %}?condition=New">New</a></li>
-        <li class="tab"><a href="{% url 'listings' %}?condition=Excellent">Excellent</a></li>
-        <li class="tab"><a href="{% url 'listings' %}?condition=Good">Good</a></li>
-        <li class="tab"><a href="{% url 'listings' %}?condition=Used">Used</a></li>
+  </nav>
+  <div class="row">
+    <div class="center-align">
+      <h5>Place an order over £{{ free_delivery_threshold }} for free delivery!</h5>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col l6 m6 s6 center-align">
+      <a class='dropdown-trigger btn' href='#' data-target='category-dropdown'>Categories</a>
+      <ul id='category-dropdown' class='dropdown-content'>
+        <li><a href="{% url 'listings' %}">All Listings</a></li>
+        <li><a href="{% url 'listings' %}?category=Swim">Swim</a></li>
+        <li><a href="{% url 'listings' %}?category=Bike">Bike</a></li>
+        <li><a href="{% url 'listings' %}?category=Run">Run</a></li>
       </ul>
     </div>
-  </nav>
+    <div class="col l6 m6 s6 center-align">
+      <a class='dropdown-trigger btn' href='#' data-target='condition-dropdown'>Condition</a>
+      <ul id='condition-dropdown' class='dropdown-content'>
+        <li><a href="{% url 'listings' %}?condition=New">New</a></li>
+        <li><a href="{% url 'listings' %}?condition=Excellent">Excellent</a></li>
+        <li><a href="{% url 'listings' %}?condition=Good">Good</a></li>
+        <li><a href="{% url 'listings' %}?condition=Used">Used</a></li>
+      </ul>
+    </div>
+  </div>
 
   <ul class="sidenav" id="mobile-demo">
     {% if request.user.is_authenticated %}
@@ -163,12 +175,6 @@
     {% endif %}
   </ul>
 
-
-  <div class="center-align">
-    <h5>Place an order over £{{ free_delivery_threshold }} for free delivery!</h5>
-  </div>
-
-
   {% if messages %}
   <div></div>
   {% endif %}
@@ -183,5 +189,17 @@
   {% endblock %}
 
 </body>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    var elems = document.querySelectorAll('.dropdown-trigger');
+    var instances = M.Dropdown.init(elems, options);
+  });
+
+  // Or with jQuery
+
+  $('.dropdown-trigger').dropdown();
+</script>
+
 
 </html>
