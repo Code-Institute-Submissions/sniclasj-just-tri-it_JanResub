@@ -10,16 +10,22 @@
 {% endblock %}
 
 {% block content %}
-<div class="container">
+<div class="parallax-container">
+    <div class="parallax"><img src="images/parallax1.jpg"></div>
+  </div>
+  <div class="section white">
     <div class="row center-align">
         <div class="col s12">
             <h1>
-                Just Tri It
+                Just Tri It!
             </h1>
             <hr>
             <a href="{% url 'listings' %}" class="waves-effect waves-light btn-large pink">View Listings</a>
             <hr>
         </div>
     </div>
-</div>
+  </div>
+  <div class="parallax-container">
+    <div class="parallax"><img src="images/parallax2.jpg"></div>
+  </div>
 {% endblock %}
