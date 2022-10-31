@@ -1,7 +1,14 @@
 body {
     color: #555;
     font-family: "Luckiest Guy";
-}
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+  }
+
+  main {
+    flex: 1 0 auto;
+  }
 
 .xs-btn {
     font-size: 9px !important;
