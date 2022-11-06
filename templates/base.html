@@ -74,7 +74,7 @@
 <main>
 
   <body>
-    <nav class="nav-extended">
+    <nav class="nav-extended red accent-2">
       <div class="nav-wrapper">
         <a href="{% url 'home' %}" class="brand-logo">Just Tri It!</a>
         <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
@@ -122,26 +122,26 @@
     </div>
     <div class="row">
       <div class="col l6 m6 s6 center-align">
-        <a class='dropdown-trigger btn' href='#' data-target='category-dropdown'>Categories</a>
+        <a class="dropdown-trigger btn light-blue darken-1" href='#' data-target='category-dropdown'>Categories</a>
         <ul id='category-dropdown' class='dropdown-content'>
-          <li><a href="{% url 'listings' %}">All Listings</a></li>
-          <li><a href="{% url 'listings' %}?category=Swim">Swim</a></li>
-          <li><a href="{% url 'listings' %}?category=Bike">Bike</a></li>
-          <li><a href="{% url 'listings' %}?category=Run">Run</a></li>
+          <li><a class="light-blue-text" href="{% url 'listings' %}">All Listings</a></li>
+          <li><a class="light-blue-text" href="{% url 'listings' %}?category=Swim">Swim</a></li>
+          <li><a class="light-blue-text" href="{% url 'listings' %}?category=Bike">Bike</a></li>
+          <li><a class="light-blue-text" href="{% url 'listings' %}?category=Run">Run</a></li>
         </ul>
       </div>
       <div class="col l6 m6 s6 center-align">
-        <a class='dropdown-trigger btn' href='#' data-target='condition-dropdown'>Condition</a>
+        <a class="dropdown-trigger btn light-blue darken-1" href='#' data-target='condition-dropdown'>Condition</a>
         <ul id='condition-dropdown' class='dropdown-content'>
-          <li><a href="{% url 'listings' %}?condition=New">New</a></li>
-          <li><a href="{% url 'listings' %}?condition=Excellent">Excellent</a></li>
-          <li><a href="{% url 'listings' %}?condition=Good">Good</a></li>
-          <li><a href="{% url 'listings' %}?condition=Used">Used</a></li>
+          <li><a class="light-blue-text" href="{% url 'listings' %}?condition=New">New</a></li>
+          <li><a class="light-blue-text" href="{% url 'listings' %}?condition=Excellent">Excellent</a></li>
+          <li><a class="light-blue-text" href="{% url 'listings' %}?condition=Good">Good</a></li>
+          <li><a class="light-blue-text" href="{% url 'listings' %}?condition=Used">Used</a></li>
         </ul>
       </div>
     </div>
 
-    <ul class="sidenav" id="mobile-demo">
+    <ul class="sidenav teal accent-2" id="mobile-demo">
       {% if request.user.is_authenticated %}
       {% if request.user.is_superuser %}
       <li><a href="{% url 'profile_admin' %}">Profile Admin</a></li>
@@ -202,7 +202,7 @@
     </script>
 
 </main>
-<footer class="page-footer ">
+<footer class="page-footer red accent-2">
   <div class="container">
     <div class="row">
       <div class="col l6 s12">
