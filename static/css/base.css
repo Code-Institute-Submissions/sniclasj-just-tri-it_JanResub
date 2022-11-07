@@ -16,3 +16,11 @@ body {
     height: 18px !important;
     padding: 0 5px !important;
 }
+
+nav .brand-logo {
+  position: absolute;
+  color: #fff;
+  display: inline-block;
+  font-size: 2.1rem;
+  padding: 0px 10px !important;
+}
