@@ -18,27 +18,30 @@
             {% endif %}
         </div>
     </div>
+</div>
+
+<div class="container">
     <div class="row">
-        {% for listing in listings %}
-        <div class="col l3 m6 s12">
-            <div class="card">
-                <div class="card-image">
-                    {% if listing.image %}
-                    <img src="{{ listing.image.url }}">
+        <div class="col l12 m12 s12">
+            {% for listing in listings %}
+            <ul class="collection">
+                <li class="collection-item avatar">
+                    <img src="" alt="" class="circle">
+                    <span class="title">
+                        <a href="{% url 'listing_info' listing.id %}">{{ listing.name }}</a>
+                    </span>
+                    <p>Price: £{{ listing.price }} <br>
+                        Condition: {{ listing.condition }}
+                    </p>
+                    {% if listing.lister|lower == request.user|lower or request.user.is_superuser %}
+                    <div class="secondary-content">
+                        <a href="{% url 'edit_listing' listing.id %}">Edit</a> <br>
+                        <a href="#modal-{{ listing.id }}" class="modal-trigger red-text">Delete</a>
+                    </div>
                     {% endif %}
-                </div>
-                <div class="card-content">
-                    <p>{{ listing.name }}</p>
-                </div>
-                <div class="card-action">
-                    <a href="{% url 'listing_info' listing.id %}">View Listing</a>
-                </div>
-            </div>
-            {% if listing.lister|lower == request.user|lower or request.user.is_superuser %}
-            <div class="row center-align">
-                <a href="{% url 'edit_listing' listing.id %}">Edit</a> | 
-                <a href="#modal-{{ listing.id }}" class="modal-trigger red-text">Delete</a>
-            </div>
+                </li>
+            </ul>
+
             <!-- Modal Structure -->
             <div id="modal-{{ listing.id }}" class="modal">
                 <div class="modal-content">
@@ -46,16 +49,15 @@
                     <p>{{ listing.name }} will be permanently deleted!</p>
                 </div>
                 <div class="modal-footer">
-                    <a href="{% url 'delete_listing' listing.id %}"
-                        class="modal-close btn-flat red-text">Delete</a>
+                    <a href="{% url 'delete_listing' listing.id %}" class="modal-close btn-flat red-text">Delete</a>
                     <a href="" class="modal-close btn-flat green-text">Cancel</a>
                 </div>
             </div>
-            {% endif %}
+            {% endfor %}
         </div>
-        {% endfor %}
     </div>
 </div>
+
 {% endblock %}
 
 {% block postloadjs %}
