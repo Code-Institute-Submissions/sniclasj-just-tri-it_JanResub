@@ -3,29 +3,35 @@
 
 {% block page_header %}
 <div class="container">
-    <div class="row">
-        <div class="col"></div>
-    </div>
+  <div class="row">
+    <div class="col"></div>
+  </div>
 </div>
 {% endblock %}
 
 {% block content %}
 <div class="parallax-container">
-    <div class="parallax"><img src="images/parallax1.jpg"></div>
+  <div class="parallax">
+    <img src="{% static 'images/im_wales_bike.png' %}" alt="biking in wales">
   </div>
-  <div class="section white">
-    <div class="row center-align">
-        <div class="col s12">
-            <h1>
-                Just Tri It!
-            </h1>
-            <hr>
-            <a href="{% url 'listings' %}" class="waves-effect waves-light btn-large light-blue darken-1">View Listings</a>
-            <hr>
-        </div>
+</div>
+
+<div class="section white">
+  <div class="row center-align">
+    <div class="col s12">
+      <h1>
+        Just Tri It!
+      </h1>
+      <hr>
+      <a href="{% url 'listings' %}" class="waves-effect waves-light btn-large light-blue darken-1">View Listings</a>
+      <hr>
     </div>
   </div>
-  <div class="parallax-container">
-    <div class="parallax"><img src="images/parallax2.jpg"></div>
+</div>
+
+<div class="parallax-container">
+  <div class="parallax">
+    <img src="{% static 'images/im_wales_run.png' %}">
   </div>
+</div>
 {% endblock %}
