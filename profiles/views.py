@@ -53,9 +53,14 @@ def edit_seller_status(request, profile_id):
 
     profile = get_object_or_404(Profile, pk=profile_id)
     if request.method == 'POST':
-        formb = SellerStatusForm(request.POST, request.FILES, instance=profile)
+        formb = SellerStatusForm(request.POST, instance=profile)
         if formb.is_valid():
-            formb.save()
+            if request.POST.get("is_seller"):
+                is_seller = True
+            else:
+                is_seller = False
+            profile.is_seller = is_seller
+            profile.save()
             messages.success(
                 request, 'Successfully updated profile seller status!')
             return redirect(reverse('profile_admin'))
