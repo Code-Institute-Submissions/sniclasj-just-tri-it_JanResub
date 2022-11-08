@@ -6,63 +6,35 @@
 <head>
   <!-- Required meta tags -->
   {% block meta %}
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   {% endblock %}
 
   {% block extra_meta %}
   {% endblock %}
 
-  <!-- Bootstrap CSS -->
   {% block corecss %}
-  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300&family=Luckiest+Guy&family=Monoton&display=swap"
-    rel="stylesheet">
-  <link rel="stylesheet" href="{% static 'css/base.css' %}">
-  <!-- Materialize CSS -->
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.1/css/materialize.min.css"
-    integrity="sha256-qj3p6P1fJIV+Ndv7RW1ovZI2UhOuboj9GcODzcNFIN8=" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300&family=Luckiest+Guy&family=Monoton&display=swap" rel="stylesheet">
+    <!-- Materialize CSS -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
   {% endblock %}
 
   {% block extra_css %}
   {% endblock %}
 
   {% block corejs %}
-  <script src="https://kit.fontawesome.com/9dd0908621.js" crossorigin="anonymous"></script>
-  <script src="https://code.jquery.com/jquery-3.6.1.min.js"
-    integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
-    integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous">
-  </script>
+    <script src="https://kit.fontawesome.com/9dd0908621.js" crossorigin="anonymous"></script>
+    <!-- jquery -->
+    <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
 
-  <!-- Materialize -->
-  <script src="https://code.jquery.com/jquery-3.3.1.min.js"
-    integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+    <!-- Materialize -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.1/js/materialize.min.js"
-    integrity="sha256-SrBfGi+Zp2LhAvy9M1bWOCXztRU9Ztztxmu5BcYPcPE=" crossorigin="anonymous"></script>
-
-  <script>
-    $(document).ready(function () {
-
-      // Initialize materialize data picker
-      $('.datepicker').datepicker({
-        'format': 'yyyy-mm-dd'
-      });
-      $('select').formSelect();
-
-    });
-
-    // Or with jQuery
-
-    $(document).ready(function () {
-      $('.sidenav').sidenav();
-    });
-  </script>
-
-  <!-- Stripe -->
-  <script src="https://js.stripe.com/v3/"></script>
+    <!-- Stripe -->
+    <script src="https://js.stripe.com/v3/"></script>
   {% endblock %}
 
   {% block extra_js %}
@@ -71,55 +43,70 @@
   <title>Just Tri It! {% block extra_title %}{% endblock %}</title>
 </head>
 
-<main>
+<body>
 
-  <body>
+  <main>
     <nav class="nav-extended red accent-2">
       <div class="nav-wrapper">
         <a href="{% url 'home' %}" class="brand-logo">Just Tri It!</a>
         <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="fa-solid fa-bars"></i></a>
         <ul id="nav-mobile" class="right hide-on-med-and-down">
           {% if request.user.is_authenticated %}
-          {% if request.user.is_superuser %}
-          <li><a href="{% url 'profile_admin' %}">Profile Admin</a></li>
-          {% endif %}
-          {% if request.user.profile.is_seller %}
-          <li><a href="{% url 'listings' %}">Listing Admin</a></li>
-          {% endif %}
-          <li><a href="{% url 'profile' %}">Athlete Profile</a></li>
-          <li><a href="{% url 'account_logout' %}">Logout</a></li>
-          <li>
-            <a href="{% url 'view_basket' %}">
-              <i class="fas fa-shopping-bag fa-lg"></i>
-              {% if grand_total %}
-              £{{ grand_total|floatformat:2 }}
-              {% else %}
-              £0.00
-              {% endif %}
-            </a>
-          </li>
+            {% if request.user.is_superuser %}
+              <li><a href="{% url 'profile_admin' %}">Profile Admin</a></li>
+            {% endif %}
+            {% if request.user.profile.is_seller %}
+              <li><a href="{% url 'listings' %}">Listing Admin</a></li>
+            {% endif %}
+            <li><a href="{% url 'profile' %}">Athlete Profile</a></li>
+            <li><a href="{% url 'account_logout' %}">Logout</a></li>
+            <li>
+              <a href="{% url 'view_basket' %}">
+                <i class="fas fa-shopping-bag fa-lg"></i>
+                {% if grand_total %}
+                £{{ grand_total|floatformat:2 }}
+                {% else %}
+                £0.00
+                {% endif %}
+              </a>
+            </li>
           {% else %}
-          <li><a href="{% url 'account_login' %}">Login</a></li>
-          <li><a href="{% url 'account_signup' %}">Register</a></li>
-          <li>
-            <a href="{% url 'view_basket' %}">
-              <i class="fas fa-shopping-bag fa-lg"></i>
-              {% if grand_total %}
-              £{{ grand_total|floatformat:2 }}
-              {% else %}
-              £0.00
-              {% endif %}
-            </a>
-          </li>
+            <li><a href="{% url 'account_login' %}">Login</a></li>
+            <li><a href="{% url 'account_signup' %}">Register</a></li>
+            <li>
+              <a href="{% url 'view_basket' %}">
+                <i class="fas fa-shopping-bag fa-lg"></i>
+                {% if grand_total %}
+                  £{{ grand_total|floatformat:2 }}
+                {% else %}
+                  £0.00
+                {% endif %}
+              </a>
+            </li>
           {% endif %}
         </ul>
       </div>
     </nav>
+
+    <!-- Toast Messages -->
+    {% if messages %}
+    <aside class="container-fluid yellow">
+      {% for message in messages %}
+      <div class="row center-align">
+        <div class="col">
+          {{ message }}
+        </div>
+      </div>
+      {% endfor %}
+    </aside>
+    {% endif %}
+
     <div class="row">
       <div class="center-align">
         <h5>Place an order over £{{ free_delivery_threshold }} for free delivery!</h5>
       </div>
     </div>
+
     <div class="row">
       <div class="col l6 m6 s6 center-align">
         <a class="dropdown-trigger btn light-blue darken-1" href='#' data-target='category-dropdown'>Categories</a>
@@ -143,46 +130,42 @@
 
     <ul class="sidenav teal" id="mobile-demo">
       {% if request.user.is_authenticated %}
-      {% if request.user.is_superuser %}
-      <li><a class="white-text" href="{% url 'profile_admin' %}">Profile Admin</a></li>
-      {% endif %}
-      {% if request.user.profile.is_seller %}
-      <li><a class="white-text" href="{% url 'listings' %}">Listing Admin</a></li>
-      {% endif %}
-      <li><a class="white-text" href="{% url 'profile' %}">Athlete Profile</a></li>
-      <li><a class="white-text" href="{% url 'account_logout' %}">Log Out</a></li>
-      <li>
-        <a class="white-text" href="{% url 'view_basket' %}">
-          <i class="fas fa-shopping-bag fa-lg" style="color:#fff"></i>
-          {% if grand_total %}
-          £{{ grand_total|floatformat:2 }}
-          {% else %}
-          £0.00
-          {% endif %}
-        </a>
-      </li>
+        {% if request.user.is_superuser %}
+          <li><a class="white-text" href="{% url 'profile_admin' %}">Profile Admin</a></li>
+        {% endif %}
+        {% if request.user.profile.is_seller %}
+          <li><a class="white-text" href="{% url 'listings' %}">Listing Admin</a></li>
+        {% endif %}
+        <li><a class="white-text" href="{% url 'profile' %}">Athlete Profile</a></li>
+        <li><a class="white-text" href="{% url 'account_logout' %}">Log Out</a></li>
+        <li>
+          <a class="white-text" href="{% url 'view_basket' %}">
+            <i class="fas fa-shopping-bag fa-lg" style="color:#fff"></i>
+            {% if grand_total %}
+              £{{ grand_total|floatformat:2 }}
+            {% else %}
+              £0.00
+            {% endif %}
+          </a>
+        </li>
       {% else %}
-      <li><a class="white-text" href="{% url 'account_login' %}">Login</a></li>
-      <li><a class="white-text" href="{% url 'account_signup' %}">Register</a></li>
-      <li>
-        <a class="white-text" href="{% url 'view_basket' %}">
-          <i class="fas fa-shopping-bag fa-lg white"></i>
-          {% if grand_total %}
-          £{{ grand_total|floatformat:2 }}
-          {% else %}
-          £0.00
-          {% endif %}
-        </a>
-      </li>
+        <li><a class="white-text" href="{% url 'account_login' %}">Login</a></li>
+        <li><a class="white-text" href="{% url 'account_signup' %}">Register</a></li>
+        <li>
+          <a class="white-text" href="{% url 'view_basket' %}">
+            <i class="fas fa-shopping-bag fa-lg white"></i>
+            {% if grand_total %}
+              £{{ grand_total|floatformat:2 }}
+            {% else %}
+              £0.00
+            {% endif %}
+          </a>
+        </li>
       {% endif %}
     </ul>
 
     {% block content %}
     {% endblock %}
-
-    {% if messages %}
-    <div></div>
-    {% endif %}
 
     {% block page_header %}
     {% endblock %}
@@ -190,34 +173,33 @@
     {% block postloadjs %}
     {% endblock %}
 
-    <script>
-      document.addEventListener('DOMContentLoaded', function () {
-        var elems = document.querySelectorAll('.dropdown-trigger');
-        var instances = M.Dropdown.init(elems, options);
-      });
+  </main>
 
-      // Or with jQuery
-
-      $('.dropdown-trigger').dropdown();
-    </script>
-
-</main>
-<footer class="page-footer red accent-2">
-  <div class="container">
-    <div class="row">
-      <div class="col l6 s12">
-        <h5 class="white-text">Just Tri It!</h5>
-        <p class="grey-text text-lighten-4">The used triathlon gear marketplace.</p>
+  <footer class="page-footer red accent-2">
+    <div class="container">
+      <div class="row">
+        <div class="col l6 s12">
+          <h5 class="white-text">Just Tri It!</h5>
+          <p class="grey-text text-lighten-4">The used triathlon gear marketplace.</p>
+        </div>
       </div>
     </div>
-  </div>
-  <div class="footer-copyright">
-    <div class="container">
-      © 2022 Copyright Just Tri It
-      <a class="grey-text text-lighten-4 right" href="#!">Site by Sion Jones</a>
+    <div class="footer-copyright">
+      <div class="container">
+        © 2022 Copyright Just Tri It
+        <a class="grey-text text-lighten-4 right" href="#!">Site by Sion Jones</a>
+      </div>
     </div>
-  </div>
-</footer>
-</body>
+  </footer>
 
+  <script>
+    $(document).ready(function () {
+      $('select').formSelect();
+      $('.sidenav').sidenav();
+      $('.dropdown-trigger').dropdown();
+      $('.parallax').parallax();
+    });
+  </script>
+
+</body>
 </html>
