@@ -78,19 +78,19 @@
     
     <div class="row">
         <div class="col s12 center-align">
-            <a href="{% url 'checkout' %}" class="btn pink"> Go to Checkout </a>
+            <a href="{% url 'checkout' %}" class="btn light-blue darken-1"> Go to Checkout </a>
             {% if free_delivery_delta > 0 %}
             <p class="red-text">
                 You could get free delivery by spending just <strong>£{{ free_delivery_delta }}</strong> more!
             </p>
             {% endif %}
             {% else %}
-            <p class="lead mb-5">Your basket is empty.</p>
-            <a href="{% url 'listings' %}" class="btn red">
+            <p>Your basket is empty.</p>
+            <a href="{% url 'listings' %}" class="btn light-blue darken-1">
                 <span class="icon">
                     <i class="fas fa-chevron-left"></i>
                 </span>
-                <span class="text-uppercase">Keep Shopping</span>
+                <span>Keep Shopping</span>
             </a>
         </div>
     </div>
