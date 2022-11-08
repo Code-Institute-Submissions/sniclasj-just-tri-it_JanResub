@@ -57,6 +57,8 @@
                     <a href="" class="modal-close btn-flat green-text">Cancel</a>
                 </div>
             </div>
+            {% empty %}
+            No listings found for {{ request.GET.category }}.
             {% endfor %}
         </div>
     </div>
