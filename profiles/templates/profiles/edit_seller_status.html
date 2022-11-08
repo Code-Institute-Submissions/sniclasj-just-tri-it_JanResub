@@ -17,10 +17,14 @@
         </div>
         <div class="row">
             <div class="col">
-                <form method="POST" action="{% url 'edit_seller_status' profile.id %}" enctype="multipart/form-data">
+                <form method="POST" action="{% url 'edit_seller_status' profile.id %}">
                     {% csrf_token %}
                     <label for="edit-seller-status-box">
-                        <input type="checkbox" id="edit-seller-status-box" />
+                        {% if profile.is_seller %}
+                            <input type="checkbox" id="edit-seller-status-box" name="is_seller" checked>
+                        {% else %}
+                            <input type="checkbox" id="edit-seller-status-box" name="is_seller">
+                        {% endif %}
                         <span>Is Seller?</span>
                     </label>
                     <div>
