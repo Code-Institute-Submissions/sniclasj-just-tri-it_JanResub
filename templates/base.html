@@ -77,7 +77,7 @@
     <nav class="nav-extended red accent-2">
       <div class="nav-wrapper">
         <a href="{% url 'home' %}" class="brand-logo">Just Tri It!</a>
-        <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+        <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="fa-solid fa-bars"></i></a>
         <ul id="nav-mobile" class="right hide-on-med-and-down">
           {% if request.user.is_authenticated %}
           {% if request.user.is_superuser %}
@@ -142,20 +142,20 @@
       </div>
     </div>
 
-    <ul class="sidenav teal lighten-2" id="mobile-demo">
+    <ul class="sidenav teal" id="mobile-demo">
       {% if request.user.is_authenticated %}
       {% if request.user.is_superuser %}
-      <li><a href="{% url 'profile_admin' %}">Profile Admin</a></li>
-      <li><a href="{% url 'listings' %}">Listing Admin</a></li>
+      <li><a class="white-text" href="{% url 'profile_admin' %}">Profile Admin</a></li>
+      <li><a class="white-text" href="{% url 'listings' %}">Listing Admin</a></li>
       {% endif %}
       {% if request.user.profile.is_seller %}
-      <li><a href="{% url 'listings' %}">Listing Admin</a></li>
+      <li><a class="white-text" href="{% url 'listings' %}">Listing Admin</a></li>
       {% endif %}
-      <li><a href="{% url 'profile' %}">Athlete Profile</a></li>
-      <li><a href="{% url 'account_logout' %}">Log Out</a></li>
+      <li><a class="white-text" href="{% url 'profile' %}">Athlete Profile</a></li>
+      <li><a class="white-text" href="{% url 'account_logout' %}">Log Out</a></li>
       <li>
-        <a href="{% url 'view_basket' %}">
-          <i class="fas fa-shopping-bag fa-lg"></i>
+        <a class="white-text" href="{% url 'view_basket' %}">
+          <i class="fas fa-shopping-bag fa-lg" style="color:#fff"></i>
           {% if grand_total %}
           £{{ grand_total|floatformat:2 }}
           {% else %}
@@ -164,11 +164,11 @@
         </a>
       </li>
       {% else %}
-      <li><a href="{% url 'account_login' %}">Login</a></li>
-      <li><a href="{% url 'account_signup' %}">Register</a></li>
+      <li><a class="white-text" href="{% url 'account_login' %}">Login</a></li>
+      <li><a class="white-text" href="{% url 'account_signup' %}">Register</a></li>
       <li>
-        <a href="{% url 'view_basket' %}">
-          <i class="fas fa-shopping-bag fa-lg"></i>
+        <a class="white-text" href="{% url 'view_basket' %}">
+          <i class="fas fa-shopping-bag fa-lg white"></i>
           {% if grand_total %}
           £{{ grand_total|floatformat:2 }}
           {% else %}
