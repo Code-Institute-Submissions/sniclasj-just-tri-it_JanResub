@@ -21,8 +21,8 @@
                     {% csrf_token %}
                     {{ form }}
                     <div class="text-right">
-                        <a class="btn light-blue darken-1" href="{% url 'listings' %}">Cancel</a>
-                        <button class="btn pink" type="submit">Add Listing</button>
+                        <a class="btn red" href="{% url 'listings' %}">Cancel</a>
+                        <button class="btn light-blue darken-1" type="submit">Add Listing</button>
                     </div>
                 </form>
             </div>
