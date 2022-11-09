@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect, reverse, get_object_or_404
 from .models import Listing, Category, Condition
-from .forms import ListingForm
+from .forms import ListingForm, CategoryForm
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 
@@ -115,3 +115,30 @@ def delete_listing(request, listing_id):
     listing.delete()
     messages.success(request, 'Listing deleted!')
     return redirect(reverse('listings'))
+
+
+@login_required
+def add_category(request):
+    """ Add a category to the store """
+    if not request.user.profile.is_seller:
+        messages.error(request, 'Sorry, only store owners can do that.')
+        return redirect(reverse('home'))
+
+    if request.method == 'POST':
+        form = CategoryForm(request.POST)
+        if form.is_valid():
+            cateogory = form.save()
+            messages.success(request, 'Successfully added category!')
+            return redirect(reverse('listings'))
+        else:
+            messages.error(
+                request, 'Category error. Please ensure the form is valid.')
+    else:
+        form = CategoryForm()
+
+    template = 'listings/add_category.html'
+    context = {
+        'form': form,
+    }
+
+    return render(request, template, context)
