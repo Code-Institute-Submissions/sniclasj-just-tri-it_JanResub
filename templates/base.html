@@ -11,18 +11,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   {% endblock %}
 
-  {% block extra_meta %}
-  {% endblock %}
-
   {% block corecss %}
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300&family=Luckiest+Guy&family=Monoton&display=swap" rel="stylesheet">
     <!-- Materialize CSS -->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <link rel="stylesheet" href="{% static 'css/base.css' %}">
-  {% endblock %}
-
-  {% block extra_css %}
   {% endblock %}
 
   {% block corejs %}
@@ -37,10 +31,7 @@
     <script src="https://js.stripe.com/v3/"></script>
   {% endblock %}
 
-  {% block extra_js %}
-  {% endblock %}
-
-  <title>Just Tri It! {% block extra_title %}{% endblock %}</title>
+<title>Just Tri It! {% block extra_title %}{% endblock %}</title>
 </head>
 
 <body>
@@ -90,9 +81,9 @@
 
     <!-- Toast Messages -->
     {% if messages %}
-    <aside class="container-fluid yellow">
+    <aside class="container-fluid teal white-text">
       {% for message in messages %}
-      <div class="row center-align">
+      <div class="row">
         <div class="col">
           {{ message }}
         </div>
