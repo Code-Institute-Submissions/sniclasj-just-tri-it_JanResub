@@ -42,10 +42,11 @@
                         <td>
                             <form class="form form-update" action="{% url 'amend_basket' item.item_id %}" method="POST">
                                 {% csrf_token %}
-                                <input class="center-align" type="number" name="quantity" value="{{ item.quantity }}"
+                                <input class="center-align qty-input" type="number" name="quantity" value="{{ item.quantity }}"
                                     min="1" max="99">
                             </form>
-                            <a class="update-button btn-small xs-btn teal">Update</a> | <a id="remove_{{ item.item_id }}" class="remove-button btn-small xs-btn red">Remove</a>
+                            <a class="update-button btn-small xs-btn teal">Update</a> | <a
+                                id="remove_{{ item.item_id }}" class="remove-button btn-small xs-btn red">Remove</a>
                         </td>
                         <td>£{{ item.listing.price | calc_subtotal:item.quantity }}</td>
                     </tr>
@@ -57,25 +58,25 @@
         <div class="col l6">
             <h4>Cost Summary</h4>
             <table class="striped">
-            <thead>
-                <tr>
-                    <th>Basket Total</th>
-                    <th>Delivery</th>
-                    <th>Grand Total</th>
-                </tr>
-            </thead>
+                <thead>
+                    <tr>
+                        <th>Basket Total</th>
+                        <th>Delivery</th>
+                        <th>Grand Total</th>
+                    </tr>
+                </thead>
 
-            <tbody>
-                <tr>
-                    <td>£{{ total|floatformat:2 }}</td>
-                    <td>£{{ delivery|floatformat:2 }}</td>
-                    <td>£{{ grand_total|floatformat:2 }}</td>
-                </tr>
-            </tbody>
+                <tbody>
+                    <tr>
+                        <td>£{{ total|floatformat:2 }}</td>
+                        <td>£{{ delivery|floatformat:2 }}</td>
+                        <td>£{{ grand_total|floatformat:2 }}</td>
+                    </tr>
+                </tbody>
             </table>
         </div>
     </div>
-    
+
     <div class="row">
         <div class="col s12 center-align">
             <a href="{% url 'checkout' %}" class="btn light-blue darken-1"> Go to Checkout </a>
@@ -94,30 +95,42 @@
             </a>
         </div>
     </div>
-        {% endif %}
+    {% endif %}
 </div>
 {% endblock %}
 
 
 {% block postloadjs %}
 <script type="text/javascript">
+    // Fix quantity to be 0-99
+    $(".qty-input").keyup(function () {
+        let inputVal = $(this).val();
+        if (inputVal < 0 || inputVal > 99 || inputVal.length > 2) {
+            $(this).val("");
+        } else {
+            $(this).val(inputVal);
+        }
+    });
+
     // Update quantity on click
-    $('.update-button').click(function(e) {
+    $('.update-button').click(function (e) {
         var form = $(this).prev('.form-update');
         form.submit();
     })
 
     // Remove item and reload on click
-    $('.remove-button').click(function(e) {
-    var csrfToken = "{{ csrf_token }}";
-    var itemId = $(this).attr('id').split('remove_')[1];
-    var url = `/basket/remove/${itemId}/`;
-    var data = {'csrfmiddlewaretoken': csrfToken,};
+    $('.remove-button').click(function (e) {
+        var csrfToken = "{{ csrf_token }}";
+        var itemId = $(this).attr('id').split('remove_')[1];
+        var url = `/basket/remove/${itemId}/`;
+        var data = {
+            'csrfmiddlewaretoken': csrfToken,
+        };
 
-    $.post(url, data)
-        .done(function() {
-            location.reload();
-        });
+        $.post(url, data)
+            .done(function () {
+                location.reload();
+            });
     })
 </script>
 {% endblock %}
