@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block page_header %}
+<div class="container">
+    <div class="row">
+        <div class="col"></div>
+    </div>
+</div>
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col">
+            Add a Category
+        </div>
+        <div class="row">
+            <div class="col">
+                <form method="POST" action="{% url 'add_category' %}" class="form" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    {{ form }}
+                    <div class="text-right">
+                        <a class="btn red" href="{% url 'listings' %}">Cancel</a>
+                        <button class="btn light-blue darken-1" type="submit">Add Category</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
