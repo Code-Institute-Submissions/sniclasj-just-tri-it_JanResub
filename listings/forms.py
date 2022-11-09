@@ -13,3 +13,13 @@ class ListingForm(forms.ModelForm):
         super().__init__(*args, **kwargs)
         categories = Category.objects.all()
         condition = Condition.objects.all()
+
+
+class CategoryForm(forms.ModelForm):
+
+    class Meta:
+        model = Category
+        fields = '__all__'
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
