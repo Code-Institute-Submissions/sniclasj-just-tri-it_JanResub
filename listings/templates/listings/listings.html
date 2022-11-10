@@ -30,7 +30,9 @@
             {% for listing in listings %}
             <ul class="collection">
                 <li class="collection-item avatar">
-                    <img src="" alt="" class="circle">
+                    {% if listing.image %}
+                    <img src="{{ listing.image.url }}" alt="{{ listing.name }}" class="circle">
+                    {% endif %}
                     <span class="title">
                         <a href="{% url 'listing_info' listing.id %}">{{ listing.name }}</a>
                     </span>
