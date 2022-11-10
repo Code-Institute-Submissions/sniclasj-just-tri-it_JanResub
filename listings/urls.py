@@ -10,4 +10,5 @@ urlpatterns = [
     path('edit/<int:listing_id>/', views.edit_listing, name='edit_listing'),
     path('delete/<int:listing_id>/', views.delete_listing, name='delete_listing'),
     path('add_category/', views.add_category, name='add_category'),
+    path('add_condition/', views.add_condition, name='add_condition'),
 ]
