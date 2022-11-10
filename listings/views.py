@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect, reverse, get_object_or_404
 from .models import Listing, Category, Condition
-from .forms import ListingForm, CategoryForm
+from .forms import ListingForm, CategoryForm, ConditionForm
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 
@@ -137,6 +137,33 @@ def add_category(request):
         form = CategoryForm()
 
     template = 'listings/add_category.html'
+    context = {
+        'form': form,
+    }
+
+    return render(request, template, context)
+
+
+@login_required
+def add_condition(request):
+    """ Add a condition to the store """
+    if not request.user.profile.is_seller:
+        messages.error(request, 'Sorry, only store owners can do that.')
+        return redirect(reverse('home'))
+
+    if request.method == 'POST':
+        form = ConditionForm(request.POST)
+        if form.is_valid():
+            condition = form.save()
+            messages.success(request, 'Successfully added condition!')
+            return redirect(reverse('listings'))
+        else:
+            messages.error(
+                request, 'Condition error. Please ensure the form is valid.')
+    else:
+        form = ConditionForm()
+
+    template = 'listings/add_condition.html'
     context = {
         'form': form,
     }
