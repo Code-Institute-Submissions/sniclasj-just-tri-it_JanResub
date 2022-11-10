@@ -50,10 +50,8 @@
                 </div>
         </div>
 
-
-
         <div class="col l6 m12">
-            <h2>PLACEHOLDER FOR IMAGE</h2>
+            <img class="materialboxed" height="400" width="300" src="{{ listing.image.url }}">
         </div>
     </div>
 
@@ -69,3 +67,13 @@
     </form>
 </div>
 {% endblock %}
+
+{% block postloadjs %}
+<script>
+$(document).ready(function(){
+    $('.materialboxed').materialbox({
+      // specify options here
+    });
+  });
+</script>
+{% endblock%}
