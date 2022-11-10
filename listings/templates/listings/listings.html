@@ -60,7 +60,12 @@
                 </div>
             </div>
             {% empty %}
+            {% if request.GET.category %}
             No listings found for {{ request.GET.category }}.
+            {% endif %}
+            {% if request.GET.condition %}
+            No listings found for {{ request.GET.condition }}.
+            {% endif %}
             {% endfor %}
         </div>
     </div>
