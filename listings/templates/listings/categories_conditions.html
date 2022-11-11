@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% load static %}
+
+
+{% block content %}
+<div class="container">
+    <div class="row center-align">
+        <div class="col s12">
+            {% if request.user.is_superuser %}
+            <a href="{% url 'add_category' %}" class="waves-effect waves-light btn light-blue darken-1">Add Category</a>
+            <a href="{% url 'add_condition' %}" class="waves-effect waves-light btn light-blue darken-1">Add Condition</a>
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col l6 m6 s12">
+            {% for category in categories %}
+            <ul class="collection">
+                <li class="collection-item avatar">
+                    <span class="title">
+                        {{ category.name }}
+                    </span>
+                    {% if request.user.is_superuser %}
+                    <div class="secondary-content">
+                        <a href="{% url 'edit_category' category.id %}">Edit</a> <br>
+                        <a href="#modal-{{ category.id }}" class="modal-trigger red-text">Delete</a>
+                    </div>
+                    {% endif %}
+                </li>
+            </ul>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block postloadjs %}
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        let modal = document.querySelectorAll('.modal');
+        M.Modal.init(modal);
+    });
+</script>
+{% endblock %}
