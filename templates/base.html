@@ -103,18 +103,17 @@
         <a class="dropdown-trigger btn light-blue darken-1" href='#' data-target='category-dropdown'>Categories</a>
         <ul id='category-dropdown' class='dropdown-content'>
           <li><a class="light-blue-text" href="{% url 'listings' %}">All Listings</a></li>
-          <li><a class="light-blue-text" href="{% url 'listings' %}?category=Swim">Swim</a></li>
-          <li><a class="light-blue-text" href="{% url 'listings' %}?category=Bike">Bike</a></li>
-          <li><a class="light-blue-text" href="{% url 'listings' %}?category=Run">Run</a></li>
+          {% for category in all_categories %}
+          <li><a class="light-blue-text" href="{% url 'listings' %}?category=category">{{ category }}</a></li>
+          {% endfor %}
         </ul>
       </div>
       <div class="col l6 m6 s6 center-align">
         <a class="dropdown-trigger btn light-blue darken-1" href='#' data-target='condition-dropdown'>Condition</a>
         <ul id='condition-dropdown' class='dropdown-content'>
-          <li><a class="light-blue-text" href="{% url 'listings' %}?condition=New">New</a></li>
-          <li><a class="light-blue-text" href="{% url 'listings' %}?condition=Excellent">Excellent</a></li>
-          <li><a class="light-blue-text" href="{% url 'listings' %}?condition=Good">Good</a></li>
-          <li><a class="light-blue-text" href="{% url 'listings' %}?condition=Used">Used</a></li>
+          {% for condition in all_conditions %}
+          <li><a class="light-blue-text" href="{% url 'listings' %}?condition=condition">{{ condition }}</a></li>
+          {% endfor %}
         </ul>
       </div>
     </div>
