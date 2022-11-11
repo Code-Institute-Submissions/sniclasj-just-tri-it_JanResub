@@ -6,32 +6,34 @@
 <head>
   <!-- Required meta tags -->
   {% block meta %}
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   {% endblock %}
 
   {% block corecss %}
-    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300&family=Luckiest+Guy&family=Monoton&display=swap" rel="stylesheet">
-    <!-- Materialize CSS -->
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-    <link rel="stylesheet" href="{% static 'css/base.css' %}">
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300&family=Luckiest+Guy&family=Monoton&display=swap"
+    rel="stylesheet">
+  <!-- Materialize CSS -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+  <link rel="stylesheet" href="{% static 'css/base.css' %}">
   {% endblock %}
 
   {% block corejs %}
-    <script src="https://kit.fontawesome.com/9dd0908621.js" crossorigin="anonymous"></script>
-    <!-- jquery -->
-    <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+  <script src="https://kit.fontawesome.com/9dd0908621.js" crossorigin="anonymous"></script>
+  <!-- jquery -->
+  <script src="https://code.jquery.com/jquery-3.6.1.min.js"
+    integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
 
-    <!-- Materialize -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  <!-- Materialize -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 
-    <!-- Stripe -->
-    <script src="https://js.stripe.com/v3/"></script>
+  <!-- Stripe -->
+  <script src="https://js.stripe.com/v3/"></script>
   {% endblock %}
 
-<title>Just Tri It! {% block extra_title %}{% endblock %}</title>
+  <title>Just Tri It! {% block extra_title %}{% endblock %}</title>
 </head>
 
 <body>
@@ -43,37 +45,37 @@
         <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="fa-solid fa-bars"></i></a>
         <ul id="nav-mobile" class="right hide-on-med-and-down">
           {% if request.user.is_authenticated %}
-            {% if request.user.is_superuser %}
-              <li><a href="{% url 'profile_admin' %}">Profile Admin</a></li>
-            {% endif %}
-            {% if request.user.profile.is_seller %}
-              <li><a href="{% url 'listings' %}">Listing Admin</a></li>
-            {% endif %}
-            <li><a href="{% url 'profile' %}">Athlete Profile</a></li>
-            <li><a href="{% url 'account_logout' %}">Logout</a></li>
-            <li>
-              <a href="{% url 'view_basket' %}">
-                <i class="fas fa-shopping-bag fa-lg"></i>
-                {% if grand_total %}
-                £{{ grand_total|floatformat:2 }}
-                {% else %}
-                £0.00
-                {% endif %}
-              </a>
-            </li>
+          {% if request.user.is_superuser %}
+          <li><a href="{% url 'profile_admin' %}">Profile Admin</a></li>
+          {% endif %}
+          {% if request.user.profile.is_seller %}
+          <li><a href="{% url 'listings' %}">Listing Admin</a></li>
+          {% endif %}
+          <li><a href="{% url 'profile' %}">Athlete Profile</a></li>
+          <li><a href="{% url 'account_logout' %}">Logout</a></li>
+          <li>
+            <a href="{% url 'view_basket' %}">
+              <i class="fas fa-shopping-bag fa-lg"></i>
+              {% if grand_total %}
+              £{{ grand_total|floatformat:2 }}
+              {% else %}
+              £0.00
+              {% endif %}
+            </a>
+          </li>
           {% else %}
-            <li><a href="{% url 'account_login' %}">Login</a></li>
-            <li><a href="{% url 'account_signup' %}">Register</a></li>
-            <li>
-              <a href="{% url 'view_basket' %}">
-                <i class="fas fa-shopping-bag fa-lg"></i>
-                {% if grand_total %}
-                  £{{ grand_total|floatformat:2 }}
-                {% else %}
-                  £0.00
-                {% endif %}
-              </a>
-            </li>
+          <li><a href="{% url 'account_login' %}">Login</a></li>
+          <li><a href="{% url 'account_signup' %}">Register</a></li>
+          <li>
+            <a href="{% url 'view_basket' %}">
+              <i class="fas fa-shopping-bag fa-lg"></i>
+              {% if grand_total %}
+              £{{ grand_total|floatformat:2 }}
+              {% else %}
+              £0.00
+              {% endif %}
+            </a>
+          </li>
           {% endif %}
         </ul>
       </div>
@@ -109,10 +111,15 @@
         </ul>
       </div>
       <div class="col l4 m4 s4 center-align">
-        <div class="col l4 m4 s4"><h5><i class="fas fa-swimmer light-blue-text center-align"></i></h5></div>
-        <div class="col l4 m4 s4"><h5><i class="fa-sharp fa-solid fa-person-biking teal-text center-align"></i></h5></div>
-        <div class="col l4 m4 s4"><h5><i class="fas fa-running red-text accent-2 center-align"></i></h5></div>
-        <!-- <h4><i class="fas fa-swimmer light-blue-text"></i>    <i class="fa-sharp fa-solid fa-person-biking teal-text"></i>    <i class="fas fa-running red-text accent-2"></i></h4> -->
+        <div class="col l4 m4 s4">
+          <h5><i class="fas fa-swimmer light-blue-text center-align"></i></h5>
+        </div>
+        <div class="col l4 m4 s4">
+          <h5><i class="fa-sharp fa-solid fa-person-biking teal-text center-align"></i></h5>
+        </div>
+        <div class="col l4 m4 s4">
+          <h5><i class="fas fa-running red-text accent-2 center-align"></i></h5>
+        </div>
       </div>
       <div class="col l4 m4 s4 center-align">
         <a class="dropdown-trigger btn light-blue darken-1" href='#' data-target='condition-dropdown'>Condition</a>
@@ -126,37 +133,37 @@
 
     <ul class="sidenav teal" id="mobile-demo">
       {% if request.user.is_authenticated %}
-        {% if request.user.is_superuser %}
-          <li><a class="white-text" href="{% url 'profile_admin' %}">Profile Admin</a></li>
-        {% endif %}
-        {% if request.user.profile.is_seller %}
-          <li><a class="white-text" href="{% url 'listings' %}">Listing Admin</a></li>
-        {% endif %}
-        <li><a class="white-text" href="{% url 'profile' %}">Athlete Profile</a></li>
-        <li><a class="white-text" href="{% url 'account_logout' %}">Log Out</a></li>
-        <li>
-          <a class="white-text" href="{% url 'view_basket' %}">
-            <i class="fas fa-shopping-bag fa-lg" style="color:#fff"></i>
-            {% if grand_total %}
-              £{{ grand_total|floatformat:2 }}
-            {% else %}
-              £0.00
-            {% endif %}
-          </a>
-        </li>
+      {% if request.user.is_superuser %}
+      <li><a class="white-text" href="{% url 'profile_admin' %}">Profile Admin</a></li>
+      {% endif %}
+      {% if request.user.profile.is_seller %}
+      <li><a class="white-text" href="{% url 'listings' %}">Listing Admin</a></li>
+      {% endif %}
+      <li><a class="white-text" href="{% url 'profile' %}">Athlete Profile</a></li>
+      <li><a class="white-text" href="{% url 'account_logout' %}">Log Out</a></li>
+      <li>
+        <a class="white-text" href="{% url 'view_basket' %}">
+          <i class="fas fa-shopping-bag fa-lg" style="color:#fff"></i>
+          {% if grand_total %}
+          £{{ grand_total|floatformat:2 }}
+          {% else %}
+          £0.00
+          {% endif %}
+        </a>
+      </li>
       {% else %}
-        <li><a class="white-text" href="{% url 'account_login' %}">Login</a></li>
-        <li><a class="white-text" href="{% url 'account_signup' %}">Register</a></li>
-        <li>
-          <a class="white-text" href="{% url 'view_basket' %}">
-            <i class="fas fa-shopping-bag fa-lg white"></i>
-            {% if grand_total %}
-              £{{ grand_total|floatformat:2 }}
-            {% else %}
-              £0.00
-            {% endif %}
-          </a>
-        </li>
+      <li><a class="white-text" href="{% url 'account_login' %}">Login</a></li>
+      <li><a class="white-text" href="{% url 'account_signup' %}">Register</a></li>
+      <li>
+        <a class="white-text" href="{% url 'view_basket' %}">
+          <i class="fas fa-shopping-bag fa-lg white"></i>
+          {% if grand_total %}
+          £{{ grand_total|floatformat:2 }}
+          {% else %}
+          £0.00
+          {% endif %}
+        </a>
+      </li>
       {% endif %}
     </ul>
 
@@ -198,4 +205,5 @@
   </script>
 
 </body>
+
 </html>
