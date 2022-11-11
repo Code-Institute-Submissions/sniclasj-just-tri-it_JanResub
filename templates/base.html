@@ -143,7 +143,7 @@
       <li><a class="white-text" href="{% url 'account_logout' %}">Log Out</a></li>
       <li>
         <a class="white-text" href="{% url 'view_basket' %}">
-          <i class="fas fa-shopping-bag fa-lg" style="color:#fff"></i>
+          <i class="fas fa-shopping-bag fa-lg white-text"></i>
           {% if grand_total %}
           £{{ grand_total|floatformat:2 }}
           {% else %}
@@ -156,7 +156,7 @@
       <li><a class="white-text" href="{% url 'account_signup' %}">Register</a></li>
       <li>
         <a class="white-text" href="{% url 'view_basket' %}">
-          <i class="fas fa-shopping-bag fa-lg white"></i>
+          <i class="fas fa-shopping-bag fa-lg white-text"></i>
           {% if grand_total %}
           £{{ grand_total|floatformat:2 }}
           {% else %}
