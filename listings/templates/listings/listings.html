@@ -64,7 +64,7 @@
             No listings found for {{ request.GET.category }}.
             {% endif %}
             {% if request.GET.condition %}
-            No listings found for {{ request.GET.condition }}.
+            No {{ request.GET.condition }} listings found.
             {% endif %}
             {% endfor %}
         </div>
