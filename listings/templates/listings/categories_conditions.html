@@ -17,6 +17,7 @@
 <div class="container">
     <div class="row">
         <div class="col l6 m6 s12">
+            <h5 class="center-align">Categories</h5>
             {% for category in categories %}
             <ul class="collection">
                 <li class="collection-item avatar">
@@ -27,6 +28,24 @@
                     <div class="secondary-content">
                         <a href="{% url 'edit_category' category.id %}">Edit</a> <br>
                         <a href="#modal-{{ category.id }}" class="modal-trigger red-text">Delete</a>
+                    </div>
+                    {% endif %}
+                </li>
+            </ul>
+            {% endfor %}
+        </div>
+        <div class="col l6 m6 s12">
+            <h5 class="center-align">Conditions</h5>
+            {% for condition in conditions %}
+            <ul class="collection">
+                <li class="collection-item avatar">
+                    <span class="title">
+                        {{ condition.status }}
+                    </span>
+                    {% if request.user.is_superuser %}
+                    <div class="secondary-content">
+                        <a href="{% url 'edit_condition' condition.id %}">Edit</a> <br>
+                        <a href="#modal-{{ condition.id }}" class="modal-trigger red-text">Delete</a>
                     </div>
                     {% endif %}
                 </li>
