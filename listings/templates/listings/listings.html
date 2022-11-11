@@ -14,7 +14,7 @@
     <div class="row center-align">
         <div class="col s12">
             {% if request.user.is_superuser %}
-            <a href="{% url 'categories_conditons' %}" class="waves-effect waves-light btn red accent-2">Category/Condition Admin</a>
+            <a href="{% url 'categories_conditions' %}" class="waves-effect waves-light btn red accent-2">Category/Condition Admin</a>
             {% endif %}
             {% if request.user.profile.is_seller %}
             <a href="{% url 'add_listing' %}" class="waves-effect waves-light btn light-blue darken-1">Add Listing</a>
