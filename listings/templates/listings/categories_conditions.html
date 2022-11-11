@@ -20,10 +20,7 @@
             <h5 class="center-align">Categories</h5>
             {% for category in categories %}
             <ul class="collection">
-                <li class="collection-item avatar">
-                    <span class="title">
-                        {{ category.name }}
-                    </span>
+                <li class="collection-item">{{ category.name }}
                     {% if request.user.is_superuser %}
                     <div class="secondary-content">
                         <a href="{% url 'edit_category' category.id %}">Edit</a> <br>
@@ -38,10 +35,7 @@
             <h5 class="center-align">Conditions</h5>
             {% for condition in conditions %}
             <ul class="collection">
-                <li class="collection-item avatar">
-                    <span class="title">
-                        {{ condition.status }}
-                    </span>
+                <li class="collection-item">{{ condition.status }}
                     {% if request.user.is_superuser %}
                     <div class="secondary-content">
                         <a href="{% url 'edit_condition' condition.id %}">Edit</a> <br>
