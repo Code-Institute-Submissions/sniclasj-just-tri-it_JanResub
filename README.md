@@ -98,6 +98,22 @@ The footer displays on all pages across all screen sizes and is always fixed to 
 
 To view all testing documentation, please refer to [TESTING.md](TESTING.md).
 
+# Stripe Set Up
+
+-	Head to [Stripe](stripe.com) and create an account.
+-	Click on the developer button.
+![Stripe Developer Button](stripe-developer-button)
+-	Click on View Docs.
+![Stripe View Docs](stripe-view-docs)
+-	Add Stripe JavaScript script to base.html.
+![Stripe Base JS](stripe-base-js)
+- Add a postloadjs block to the bottom of checkout.html. As Django template variables cannot be rendered in external javascript files, a built-in template filter is used called json_script. This enables the template variabes to be rendered here and allows them to be accessed in the external file. One will be called stripe_public_key and the other called client_secret.
+![Stripe postloadjs](stripe-postloadjs-checkout) These template variables haven’t been sent back from the view at this point, but this will be shown in the following screenshot.
+-	  
+
+
+# AWS Set Up
+
 # Deployment
 
 The live deployed application can be found at [Just-Tri-It](https://just-tri-it.herokuapp.com/).
