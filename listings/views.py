@@ -201,6 +201,36 @@ def add_condition(request):
     return render(request, template, context)
 
 
+@login_required
+def edit_condition(request, condition_id):
+    """ Edit a condition in the store """
+    if not request.user.profile.is_seller:
+        messages.error(request, 'Sorry, only store owners can do that.')
+        return redirect(reverse('home'))
+
+    condition = get_object_or_404(Condition, pk=condition_id)
+    if request.method == 'POST':
+        form = ConditionForm(request.POST, instance=condition)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Successfully updated condition!')
+            return redirect(reverse('listings'))
+        else:
+            messages.error(
+                request, 'Update error. Please ensure the form is valid.')
+    else:
+        form = ConditionForm(instance=condition)
+        messages.info(request, f'You are editing {condition.status}')
+
+    template = 'listings/edit_condition.html'
+    context = {
+        'form': form,
+        'condition': condition,
+    }
+
+    return render(request, template, context)
+
+
 def category_condition_admin(request):
 
     categories = Category.objects.all()
