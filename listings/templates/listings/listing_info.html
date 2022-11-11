@@ -51,7 +51,9 @@
         </div>
 
         <div class="col l6 m12">
+            {% if listing.image %}
             <img class="materialboxed" height="400" width="300" src="{{ listing.image.url }}">
+            {% endif %}
         </div>
     </div>
 
