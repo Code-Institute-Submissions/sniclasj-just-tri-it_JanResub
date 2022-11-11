@@ -106,7 +106,7 @@
         <ul id='category-dropdown' class='dropdown-content'>
           <li><a class="light-blue-text" href="{% url 'listings' %}">All Listings</a></li>
           {% for category in all_categories %}
-          <li><a class="light-blue-text" href="{% url 'listings' %}?category=category">{{ category }}</a></li>
+          <li><a class="light-blue-text" href="{% url 'listings' %}?category={{category}}">{{ category }}</a></li>
           {% endfor %}
         </ul>
       </div>
@@ -125,7 +125,7 @@
         <a class="dropdown-trigger btn light-blue darken-1" href='#' data-target='condition-dropdown'>Condition</a>
         <ul id='condition-dropdown' class='dropdown-content'>
           {% for condition in all_conditions %}
-          <li><a class="light-blue-text" href="{% url 'listings' %}?condition=condition">{{ condition }}</a></li>
+          <li><a class="light-blue-text" href="{% url 'listings' %}?condition={{condition}}">{{ condition }}</a></li>
           {% endfor %}
         </ul>
       </div>
