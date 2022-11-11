@@ -145,6 +145,36 @@ def add_category(request):
 
 
 @login_required
+def edit_category(request, category_id):
+    """ Edit a category in the store """
+    if not request.user.profile.is_seller:
+        messages.error(request, 'Sorry, only store owners can do that.')
+        return redirect(reverse('home'))
+
+    category = get_object_or_404(Category, pk=category_id)
+    if request.method == 'POST':
+        form = CategoryForm(request.POST, instance=category)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Successfully updated category!')
+            return redirect(reverse('listings'))
+        else:
+            messages.error(
+                request, 'Update error. Please ensure the form is valid.')
+    else:
+        form = CategoryForm(instance=category)
+        messages.info(request, f'You are editing {category.name}')
+
+    template = 'listings/edit_category.html'
+    context = {
+        'form': form,
+        'category': category,
+    }
+
+    return render(request, template, context)
+
+
+@login_required
 def add_condition(request):
     """ Add a condition to the store """
     if not request.user.profile.is_seller:
@@ -168,4 +198,19 @@ def add_condition(request):
         'form': form,
     }
 
+    return render(request, template, context)
+
+
+def category_condition_admin(request):
+
+    categories = Category.objects.all()
+    conditions = Condition.objects.all()
+
+    template = 'listings/categories_conditions.html'
+    context = {
+        'categories': categories,
+        'conditions': conditions,
+    }
+
+    """A view to return the category and condition admin page"""
     return render(request, template, context)
