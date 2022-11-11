@@ -116,14 +116,14 @@
                     <input type="hidden" value="{{ client_secret }}" name="client_secret">
                 </fieldset>
 
-                <div>
+                <div class="submit-button">
                     <a href="{% url 'view_basket' %}" class="btn teal">
                         <span class="icon">
                             <i class="fas fa-chevron-left"></i>
                         </span>
                         <span>Adjust Basket</span>
                     </a>
-                    <button class="btn light-blue darken-1">
+                    <button id="submit-button" class="btn light-blue darken-1">
                         <span>Complete Order</span>
                         <span class="icon">
                             <i class="fas fa-lock"></i>
