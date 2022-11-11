@@ -99,7 +99,7 @@
     </div>
 
     <div class="row">
-      <div class="col l6 m6 s6 center-align">
+      <div class="col l4 m4 s4 center-align">
         <a class="dropdown-trigger btn light-blue darken-1" href='#' data-target='category-dropdown'>Categories</a>
         <ul id='category-dropdown' class='dropdown-content'>
           <li><a class="light-blue-text" href="{% url 'listings' %}">All Listings</a></li>
@@ -108,7 +108,13 @@
           {% endfor %}
         </ul>
       </div>
-      <div class="col l6 m6 s6 center-align">
+      <div class="col l4 m4 s4 center-align">
+        <div class="col l4 m4 s4"><h5><i class="fas fa-swimmer light-blue-text center-align"></i></h5></div>
+        <div class="col l4 m4 s4"><h5><i class="fa-sharp fa-solid fa-person-biking teal-text center-align"></i></h5></div>
+        <div class="col l4 m4 s4"><h5><i class="fas fa-running red-text accent-2 center-align"></i></h5></div>
+        <!-- <h4><i class="fas fa-swimmer light-blue-text"></i>    <i class="fa-sharp fa-solid fa-person-biking teal-text"></i>    <i class="fas fa-running red-text accent-2"></i></h4> -->
+      </div>
+      <div class="col l4 m4 s4 center-align">
         <a class="dropdown-trigger btn light-blue darken-1" href='#' data-target='condition-dropdown'>Condition</a>
         <ul id='condition-dropdown' class='dropdown-content'>
           {% for condition in all_conditions %}
