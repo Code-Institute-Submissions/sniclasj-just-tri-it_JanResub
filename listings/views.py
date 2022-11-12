@@ -175,6 +175,19 @@ def edit_category(request, category_id):
 
 
 @login_required
+def delete_category(request, category_id):
+    """ Delete a category from the store """
+    if not request.user.profile.is_seller:
+        messages.error(request, 'Sorry, only store owners can do that.')
+        return redirect(reverse('home'))
+
+    category = get_object_or_404(Category, pk=category_id)
+    category.delete()
+    messages.success(request, 'Category deleted!')
+    return redirect(reverse('categories_conditions'))
+
+
+@login_required
 def add_condition(request):
     """ Add a condition to the store """
     if not request.user.profile.is_seller:
@@ -229,6 +242,19 @@ def edit_condition(request, condition_id):
     }
 
     return render(request, template, context)
+
+
+@login_required
+def delete_condition(request, condition_id):
+    """ Delete a condition from the store """
+    if not request.user.profile.is_seller:
+        messages.error(request, 'Sorry, only store owners can do that.')
+        return redirect(reverse('home'))
+
+    condition = get_object_or_404(Condition, pk=condition_id)
+    condition.delete()
+    messages.success(request, 'Condition deleted!')
+    return redirect(reverse('categories_conditions'))
 
 
 def category_condition_admin(request):
