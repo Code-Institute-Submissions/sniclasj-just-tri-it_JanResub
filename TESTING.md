@@ -6,73 +6,90 @@
 
 ## Edge
 
+## Safari (Mobile)
+
 # Code Validation
 
 ## HTML
 
+Prior to displaying the results of the screeshots, I would like to make a note of the errors displayed for the following pages:
+- add_category
+- add_condition
+- add_listing
+- edit_category
+- edit_condition
+- edit_listing
+- profile
+
+The errors are caused by stray start tags ```<th>```, ```<tr>``` and ```<td>``` as well as stray end tags ```</th>```, ```</tr>``` and ```</td>```. All of the above pages utilise ```{{ form }}``` within the code where this issue arises from as shown in the screenshot below.
+
+![Error Justification Screenshot](documentation/testing/jti-html-testing-stray-tag-justification.png)
+
+Again, I feel that these errors are out of my control and must unfortunately be accepted.
+
 ### basket.html
 
-![Basket](jti-html-testing-basket.png)
+![Basket](documentation/testing/jti-html-testing-basket.png)
 
 ### checkout_success.html
 
-![Checkout Success](jti-html-testing-checkout-success.png)
+![Checkout Success](documentation/testing/jti-html-testing-checkout-success.png)
 
 ### checkout.html
 
-![Checkout](jti-html-testing-checkout.png)
+![Checkout](documentation/testing/jti-html-testing-checkout.png)
 
 ### index.html
 
-![Index](jti-html-testing-index.png)
+![Index](documentation/testing/jti-html-testing-index.png)
 
 ### add_category.html
 
-![Add Category](jti-html-testing-add_category.png)
+![Add Category](documentation/testing/jti-html-testing-add_category.png)
 
 ### add_condition.html
 
-![Add Condition](jti-html-testing-add_condition.png)
+![Add Condition](documentation/testing/jti-html-testing-add_condition.png)
 
 ### add_listing.html
 
-![Add Listing](jti-html-testing-add_listing.png)
+![Add Listing](documentation/testing/jti-html-testing-add_listing.png)
 
 ### categories_conditions.html
 
-![Categories Conditions](jti-html-testing-categories_conditions.png)
+![Categories Conditions](documentation/testing/jti-html-testing-categories_conditions.png)
 
 ### edit_category.html
 
-![Edit Category](jti-html-testing-edit_category.png)
+![Edit Category](documentation/testing/jti-html-testing-edit_category.png)
 
 ### edit_condition.html
 
-![Edit Condition](jti-html-testing-edit_condition.png)
+![Edit Condition](documentation/testing/jti-html-testing-edit_condition.png)
 
 ### edit_listing.html
 
-![Edit Listing](jti-html-testing-edit_listing.png)
+![Edit Listing](documentation/testing/jti-html-testing-edit_listing.png)
 
 ### listing_info.html
 
-![Listing Info](jti-html-testing-listing_info.png)
+![Listing Info](documentation/testing/jti-html-testing-listing_info.png)
 
 ### lisitngs.html
 
-![Listings](jti-html-testing-listings.png)
+![Listings](documentation/testing/jti-html-testing-listings.png)
 
 ### edit_seller_status.html
 
-![Edit Seller Status](jti-html-testing-ledit_seller_status.png)
+![Edit Seller Status](documentation/testing/jti-html-testing-edit_seller_status.png)
 
 ### profile_admin.html
 
-![Profile Admin](jti-html-testing-profile_admin.png)
+![Profile Admin](documentation/testing/jti-html-testing-profile_admin.png)
 
 ### profile.html
 
-![Profile Admin](jti-html-testing-profile.png)
+![Profile Admin](documentation/testing/jti-html-testing-profile.png)
 
 ### base.html
 
@@ -80,13 +97,13 @@ As there are no errors arising from my own code across all pages where base.html
 
 ## CSS
 
-[CSS Validation](https://jigsaw.w3.org/css-validator/validator?uri=https%3A%2F%2Fjust-tri-it.herokuapp.com%2F&profile=css3svg&usermedium=all&warning=1&vextwarning=&lang=en#errors)
+Although the [CSS Validation](https://jigsaw.w3.org/css-validator/validator?uri=https%3A%2F%2Fjust-tri-it.herokuapp.com%2F&profile=css3svg&usermedium=all&warning=1&vextwarning=&lang=en#errors) one error and numerous warnings. All of these are from Materialize CSS. Unfortunately, these errors have to be accepted as they are inherited from the vendor extension selected for this project. I have found Materialize difficult to work with during this project and will utilise Bootstrap in future.
 
-![CSS Validation Screenshot](jti-css-validation.png)
+![CSS Validation Screenshot](documentation/testing/jti-css-validation.png)
 
 ## JavaScript
 
-![JS Hint Validation Screenshot](jti-testing-js-stripe-elements.png)
+![JS Hint Validation Screenshot](documentation/testing/jti-testing-js-stripe-elements.png)
 
 ## Python
 
@@ -98,46 +115,46 @@ As there are no errors arising from my own code across all pages where base.html
 
 ### Basket App
 
-![Basket Python Validation](just-tri-it-python-validation-basket.png)
+![Basket Python Validation](documentation/testing/just-tri-it-python-validation-basket.png)
 
 ### Checkout App
 
-![Checkout Python Validation](just-tri-it-python-validation-checkout.png)
+![Checkout Python Validation](documentation/testing/just-tri-it-python-validation-checkout.png)
 
 ### Home App
 
-![Home Python Validation](just-tri-it-python-validation-home.png)
+![Home Python Validation](documentation/testing/just-tri-it-python-validation-home.png)
 
 ### Listings App
 
-![Listings Python Validation](just-tri-it-python-validation-listings.png)
+![Listings Python Validation](documentation/testing/just-tri-it-python-validation-listings.png)
 
 ### Main App
 
-![Main Python Validation](just-tri-it-python-validation-main.png)
+![Main Python Validation](documentation/testing/just-tri-it-python-validation-main.png)
 
 ### Profiles App
 
-![Profiles Python Validation](just-tri-it-python-validation-profiles.png)
+![Profiles Python Validation](documentation/testing/just-tri-it-python-validation-profiles.png)
 
 ### custom_storages.py, env.py and manage.py
 
-![No App Python Validation](just-tri-it-python-validation-custom-storages-env-manage.png)
+![No App Python Validation](documentation/testing/just-tri-it-python-validation-custom-storages-env-manage.png)
 
 # Lightouse
 
-Due to the numerous number of views, a spot checks were conducted on the Home page and the All Listings page. The results are summarised in the screenshot below.
+Due to the numerous number of pages available to test, spot checks were conducted on the Home page and the All Listings page. The results are summarised in the screenshot below.
 
 ### Home Page Lighthouse
 
-![Home Page Lighthouse](jti-lighthouse.png)
+![Home Page Lighthouse](documentation/testing/jti-lighthouse.png)
 
 ### Listings Page Lighthouse
-![Listings Page Lighthouse](jti-lighthouse-listings.png)
+![Listings Page Lighthouse](documentation/testing/jti-lighthouse-listings.png)
 
 # Responsiveness
 
-Due to the numerous number of views, a spot checks were conducted on XXX. The results are summarised in the screenshot below.
+Due to the numerous number of pages available to test, spot checks were conducted on XXX. The results are summarised in the screenshot below.
 
 
 
