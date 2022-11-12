@@ -1,14 +1,6 @@
 {% extends "base.html" %}
 {% load static %}
 
-{% block page_header %}
-<div class="container header-container">
-    <div class="row">
-        <div class="col"></div>
-    </div>
-</div>
-{% endblock %}
-
 {% block content %}
 <div class="container">
     <div class="row">
@@ -42,7 +34,8 @@
                                     <th><input class="center-align" type="number" name="quantity" value="1" min="1"
                                             max="99">
                                     </th>
-                                    <th><input type="submit" class="btn-small light-blue darken-1 unstyled-btn" value="Add to Basket"></th>
+                                    <th><input type="submit" class="btn-small light-blue darken-1 unstyled-btn"
+                                            value="Add to Basket"></th>
                                 </tr>
                             </thead>
                         </table>
@@ -72,10 +65,10 @@
 
 {% block postloadjs %}
 <script>
-$(document).ready(function(){
-    $('.materialboxed').materialbox({
-      // specify options here
+    $(document).ready(function () {
+        $('.materialboxed').materialbox({
+            // specify options here
+        });
     });
-  });
 </script>
 {% endblock%}
