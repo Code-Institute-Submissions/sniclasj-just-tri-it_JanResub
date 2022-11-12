@@ -182,12 +182,12 @@ Create an `env.py` file, and add the following environment variables:
 ```python
 import os
 
-os.environ.setdefault("IP", "0.0.0.0")
-os.environ.setdefault("PORT", "5000")
-os.environ.setdefault("MONGO_URI", "insert your own MongoDB URI key here")
-os.environ.setdefault("MONGO_DBNAME", "insert your own MongoDB DB Name key here")
-os.environ.setdefault("DATABASE_URL", "from your Hobby Tier on the Resources tab from Heroku")
-os.environ.setdefault("SECRET_KEY", "this can be any random secret key")
+os.environ.setdefault("STRIPE_PUBLIC_KEY", "Get from Stripe website")
+os.environ.setdefault("STRIPE_SECRET_KEY", "Get from Stripe website")
+os.environ.setdefault("STRIPE_WH_SECRET", "Get from Stripe website")
+os.environ.setdefault("DATABASE_URL", "Get from Hobby Tier on the Resources tab from Heroku")
+os.environ.setdefault("DEVELOPMENT", "True if in development, False if not")
+os.environ.setdefault("SECRET_KEY", "Any random secret key")
 ```
 
 Alternatively, if using Gitpod, you can click below to create your own workspace using this repository.
