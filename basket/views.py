@@ -24,7 +24,7 @@ def add_to_basket(request, item_id):
 
 
 def amend_basket(request, item_id):
-    """Adjust the quantity of the specified product to the specified amount"""
+    """Adjust the quantity of the specified listing to the specified amount"""
 
     quantity = int(request.POST.get('quantity'))
     basket = request.session.get('basket', {})
