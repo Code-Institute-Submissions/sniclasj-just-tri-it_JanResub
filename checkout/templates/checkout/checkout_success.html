@@ -22,11 +22,11 @@
         <div class="row">
             <div class="col l12 m12 s12">
                 <h4>Order Summary</h4>
+                <p>Order Number: {{ order.order_number }}</p>
             </div>
             <table>
                 <thead>
                     <tr>
-                        <th>Order Number</th>
                         <th>Order Date</th>
                         <th>Order Details</th>
                     </tr>
@@ -34,7 +34,6 @@
 
                 <tbody>
                     <tr>
-                        <td>{{ order.order_number }}</td>
                         <td>{{ order.date }}</td>
                         <td>
                             {% for item in order.lineitems.all %}
