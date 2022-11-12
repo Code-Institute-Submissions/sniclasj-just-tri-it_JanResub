@@ -1,14 +1,6 @@
 {% extends "base.html" %}
 {% load static %}
 
-{% block page_header %}
-<div class="container">
-    <div class="row">
-        <div class="col"></div>
-    </div>
-</div>
-{% endblock %}
-
 {% block content %}
 <div class="container">
     <div class="row">
@@ -21,9 +13,9 @@
                     {% csrf_token %}
                     <label for="edit-seller-status-box">
                         {% if profile.is_seller %}
-                            <input type="checkbox" id="edit-seller-status-box" name="is_seller" checked>
+                        <input type="checkbox" id="edit-seller-status-box" name="is_seller" checked>
                         {% else %}
-                            <input type="checkbox" id="edit-seller-status-box" name="is_seller">
+                        <input type="checkbox" id="edit-seller-status-box" name="is_seller">
                         {% endif %}
                         <span>Is Seller?</span>
                     </label>
