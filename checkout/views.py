@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect, reverse, get_object_or_404, HttpResponse
+from django.shortcuts import render, redirect, reverse, get_object_or_404, HttpResponse  # noqa
 from django.views.decorators.http import require_POST
 from django.contrib import messages
 from django.conf import settings
@@ -67,15 +67,6 @@ def checkout(request):
                             quantity=item_data,
                         )
                         order_line_item.save()
-                    else:
-                        for size, quantity in item_data['items_by_size'].items():
-                            order_line_item = OrderLineItem(
-                                order=order,
-                                listing=listing,
-                                quantity=quantity,
-                                listing_size=size,
-                            )
-                            order_line_item.save()
                 except Listing.DoesNotExist:
                     messages.error(request, (
                         "One of the listings in your basket wasn't found. "
