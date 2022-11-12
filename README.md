@@ -194,7 +194,7 @@ Alternatively, if using Gitpod, you can click below to create your own workspace
 
 [![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/sniclasj/just-tri-it)
 
-## Difference Between Local App and Heroku Deployed App
+## Difference Between Local and Deployed Versions
 
 Certain images are only deployed on the Heroku app as they are stored in AWS as opposed to the local media file.
 
