@@ -32,3 +32,9 @@ nav .brand-logo {
 .unstyled-btn {
   font-family: "Luckiest Guy";
 }
+
+.home-image {
+  width: 150px;
+  height: 200px;
+  border-radius: 50%;
+}
