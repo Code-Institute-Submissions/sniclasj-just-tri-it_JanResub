@@ -42,8 +42,8 @@
                         <td>
                             <form class="form form-update" action="{% url 'amend_basket' item.item_id %}" method="POST">
                                 {% csrf_token %}
-                                <input class="center-align qty-input" type="number" name="quantity" value="{{ item.quantity }}"
-                                    min="1" max="99">
+                                <input class="center-align qty-input" type="number" name="quantity"
+                                    value="{{ item.quantity }}" min="1" max="99">
                             </form>
                             <a class="update-button btn-small xs-btn teal">Update</a> | <a
                                 id="remove_{{ item.item_id }}" class="remove-button btn-small xs-btn red">Remove</a>
