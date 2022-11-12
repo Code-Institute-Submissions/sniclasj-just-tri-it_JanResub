@@ -25,13 +25,13 @@
                     {% if request.user.is_superuser %}
                     <div class="secondary-content">
                         <a href="{% url 'edit_category' category.id %}">Edit</a> <br>
-                        <a href="#modal-{{ category.id }}" class="modal-trigger red-text">Delete</a>
+                        <a href="#modal--{{ category.id }}" class="modal-trigger red-text">Delete</a>
                     </div>
                     {% endif %}
                 </li>
             </ul>
             <!-- Modal Structure Category -->
-            <div id="modal-{{ category.id }}" class="modal">
+            <div id="modal--{{ category.id }}" class="modal">
                 <div class="modal-content">
                     <h4>Are you sure?</h4>
                     <p>{{ category.name }} will be permanently deleted along with any associated Listings!</p>
