@@ -11,9 +11,9 @@ urlpatterns = [
     path('delete/<int:listing_id>/', views.delete_listing, name='delete_listing'),  # noqa
     path('add_category/', views.add_category, name='add_category'),
     path('add_condition/', views.add_condition, name='add_condition'),
-    path('categories_conditions/', views.category_condition_admin, name='categories_conditions'),
-    path('edit_category/<int:category_id>', views.edit_category, name='edit_category'),
-    path('edit_condition/<int:condition_id>', views.edit_condition, name='edit_condition'),
+    path('categories_conditions/', views.category_condition_admin, name='categories_conditions'),  # noqa
+    path('edit_category/<int:category_id>', views.edit_category, name='edit_category'),  # noqa
+    path('edit_condition/<int:condition_id>', views.edit_condition, name='edit_condition'),  # noqa
     path('delete_category/<int:category_id>/', views.delete_category, name='delete_category'),  # noqa
     path('delete_condition/<int:condition_id>/', views.delete_condition, name='delete_condition'),  # noqa
 ]
