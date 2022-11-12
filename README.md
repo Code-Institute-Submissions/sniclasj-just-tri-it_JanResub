@@ -192,9 +192,11 @@ os.environ.setdefault("SECRET_KEY", "this can be any random secret key")
 
 Alternatively, if using Gitpod, you can click below to create your own workspace using this repository.
 
-[![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/sniclasj/atletico-crud)
+[![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/sniclasj/just-tri-it)
 
 ## Difference Between Local App and Heroku Deployed App
+
+Certain images are only deployed on the Heroku app as they are stored in AWS as opposed to the local media file.
 
 # Credits
 
