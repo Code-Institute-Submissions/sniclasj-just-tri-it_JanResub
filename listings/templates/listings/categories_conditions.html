@@ -8,7 +8,8 @@
         <div class="col s12">
             {% if request.user.is_superuser %}
             <a href="{% url 'add_category' %}" class="waves-effect waves-light btn light-blue darken-1">Add Category</a>
-            <a href="{% url 'add_condition' %}" class="waves-effect waves-light btn light-blue darken-1">Add Condition</a>
+            <a href="{% url 'add_condition' %}" class="waves-effect waves-light btn light-blue darken-1">Add
+                Condition</a>
             {% endif %}
         </div>
     </div>
@@ -29,6 +30,17 @@
                     {% endif %}
                 </li>
             </ul>
+            <!-- Modal Structure Category -->
+            <div id="modal-{{ category.id }}" class="modal">
+                <div class="modal-content">
+                    <h4>Are you sure?</h4>
+                    <p>{{ category.name }} will be permanently deleted along with any associated Listings!</p>
+                </div>
+                <div class="modal-footer">
+                    <a href="{% url 'delete_category' category.id %}" class="modal-close btn-flat red-text">Delete</a>
+                    <a href="" class="modal-close btn-flat teal-text">Cancel</a>
+                </div>
+            </div>
             {% endfor %}
         </div>
         <div class="col l6 m6 s12">
@@ -44,6 +56,18 @@
                     {% endif %}
                 </li>
             </ul>
+
+            <!-- Modal Structure Condition -->
+            <div id="modal-{{ condition.id }}" class="modal">
+                <div class="modal-content">
+                    <h4>Are you sure?</h4>
+                    <p>{{ condition.status }} will be permanently deleted along with any associated Listings!</p>
+                </div>
+                <div class="modal-footer">
+                    <a href="{% url 'delete_condition' condition.id %}" class="modal-close btn-flat red-text">Delete</a>
+                    <a href="" class="modal-close btn-flat teal-text">Cancel</a>
+                </div>
+            </div>
             {% endfor %}
         </div>
     </div>
