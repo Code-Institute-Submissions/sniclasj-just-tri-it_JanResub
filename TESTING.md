@@ -33,7 +33,9 @@ The errors are caused by stray start tags ```<th>```, ```<tr>``` and ```<td>``` 
 
 ![Error Justification Screenshot](documentation/testing/jti-html-testing-stray-tag-justification.png)
 
-Again, I feel that these errors are out of my control and must unfortunately be accepted.
+I was unsure of how to resolve these errors as they were seemingly inherited into my code. As I did not write the code causing these errors, I have included this section to demonstrate that I understand where the errors came from.
+
+Finally, I have not included the html pages inherited from allauth in this section. A spot check of the sign up and sign out page yielded no errors.
 
 ### basket.html
 
