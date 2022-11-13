@@ -11,7 +11,7 @@
         </div>
     </div>
     <div class="row">
-        <div class="col s6">
+        <div class="col l6 m6 s12">
             <p>Default Delivery Information</p>
             <form action="{% url 'profile' %}" method="POST" id="profile-update-form">
                 {% csrf_token %}
@@ -19,7 +19,7 @@
                 <button class="btn light-blue darken-1 unstyled-btn">Update Information</button>
             </form>
         </div>
-        <div class="col s6">
+        <div class="col l6 m6 s12">
             <p>Purchase History</p>
             <table>
                 <thead>
