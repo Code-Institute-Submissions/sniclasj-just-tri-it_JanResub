@@ -179,6 +179,38 @@ Due to the numerous number of pages available to test, spot checks were conducte
 ![Listing Info Responsive](documentation/testing/jti-listing_info-responsive.jpg)
 
 
+# User Story Tests
+
+- As a user, I want to be able to add various listings to my basket before completing a purchase via a check out.
+![User Story A](documentation/testing/user-stroy-a.png)
+- As a user, I want to be able to filter listings by the three main triathlon disciplines of Swim, Bike and Run.
+![User Story B](documentation/testing/user-stroy-b.png)
+- As a user, I want to be able to filter listings by their condition such as New, Excellent, Good or Used.
+![User Story C](documentation/testing/user-stroy-c.png)
+- As a user, I want to be able to see an overall summary of all listings available to purchase.
+![User Story D](documentation/testing/user-stroy-d.png)
+- As a user, I want to be able to click on an individual listing to see more information regarding the listing.
+![User Story E](documentation/testing/user-stroy-e.png)
+- As a user, I want to be able to vary the quantity of a listing I can input into the basket when viewing the listing.
+![User Story F](documentation/testing/user-stroy-f.png)
+- As a user, I want to be able to update the quantity and/or remove a listing from my basket.
+![User Story G](documentation/testing/user-stroy-g.png)
+- As a user, I want to be able to create an account/profile.
+![User Story H](documentation/testing/user-stroy-h.png)
+- As a user, I want to be able to save default information in my account profile.
+![User Story I](documentation/testing/user-stroy-i.png)
+- As a user, I want to be able to view my previous order history.
+![User Story J](documentation/testing/user-stroy-j.png)
+- As a user with seller status, in addition to the above, I want to be able to add, edit and delete any listings I have uploaded.
+![User Story K](documentation/testing/user-stroy-k.png)
+- As a super user, in addition to the above, I want to be able to edit and delete any listing on the site.
+![User Story L](documentation/testing/user-stroy-l.png)
+- As a super user, in addition to the above, I want to be able to update a registered profile’s seller status.
+![User Story M](documentation/testing/user-stroy-m.png)
+- As a super user, in addition to the above, I want to be able to add, edit and delete categories and conditions.
+![User Story N](documentation/testing/user-stroy-n.png)
+
+
 # Error Handling
 
 I am relying on Django's built in error handling as I had to prioritise other aspects of the site's functionality.
