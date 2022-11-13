@@ -465,7 +465,7 @@ Certain images are only deployed on the Heroku app as they are stored in AWS as 
 ## Content
 
 - The whole foundation of this project is built from the _Boutique Ado_ walkthrough project in the [Code Institute LMS](https://learn.codeinstitute.net/courses/course-v1:CodeInstitute+FSF_102+Q1_2020/courseware/4201818c00aa4ba3a0dae243725f6e32/d3188bf68530497aa5fba55d07a9d7d7/). I added variation with regards to data models and admin level differences.
-- Utilising [Iris Smok's Joyful Bookstore](https://github.com/Iris-Smok/JoyfulBookstore-PP5/blob/main/README.md#deployment) README helped give structure to my README's Django, Heroku, Stripe and AWS Set Up sections.
+- Utilising [Iris Smok's Joyful Bookstore](https://github.com/Iris-Smok/JoyfulBookstore-PP5/blob/main/README.md#deployment) README helped give structure to my README's Django, Heroku, Stripe and AWS Set Up sections - thank you Iris!
 
 
 ## Media
