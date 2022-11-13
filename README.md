@@ -150,9 +150,98 @@ To install django, follow these steps:
 - Create a username and password along with an option of including an email address.
 - Make the initial commit to github.
 
-#### All Auth
+## All Auth
 
 All Auth is Django's package for managing sign up, log in, log out etc. The steps to install can be found [here](https://django-allauth.readthedocs.io/en/latest/installation.html).
+
+# Heroku Deployment
+
+This project uses [Heroku](https://www.heroku.com), a platform as a service (PaaS) that enables developers to build, run, and operate applications entirely in the cloud.
+
+Deployment steps are as follows, after account setup:
+
+- Select *New* in the top-right corner of your Heroku Dashboard, and select *Create new app* from the dropdown menu.
+- Your app name must be unique, and then choose a region closest to you (EU or USA), and finally, select *Create App*.
+
+- From the new app *Settings*, click *Reveal Config Vars*, and set the following key/value pairs:
+  - `DATABASE_URL` (this comes from the _Resources_ tab, you can get your own Postgres Database using the Free Hobby Tier)
+    - Click on the _Resources_ tab.
+    - Search for Postgres in the 'Add-ons' search bar.
+  - `SECRET_KEY` (this can be any random secret key)
+- Further key/value pairs will follow on this project and these will be detailed in the coming sections. These will eventually be:
+  - `AWS_ACCESS_KEY_ID`
+  - `AWS_SECRET_ACCESS_KEY`
+  - `STRIPE_PUBLIC_KEY`
+  - `STRIPE_SECRET_KEY`
+  - `STRIPE_WH_SECRET`
+  - `USE_AWS`
+
+Heroku needs two additional files in order to deploy properly.
+- requirements.txt
+- Procfile
+
+You can install this project's requirements (where applicable) using: `pip3 install -r requirements.txt`. If you have your own packages that have been installed, then the requirements file needs updated using: `pip3 freeze --local > requirements.txt`
+
+The Procfile can be created with the following command: `echo web: python app.py > Procfile`
+
+For Heroku deployment, follow these steps to connect your GitHub repository to the newly created app:
+
+Either:
+- Connect Heroku and GitHub via the Deploy tab.
+- Then select "Automatic Deployment" from the Heroku app.
+- Click the _Deploy Branch_ button.
+
+Or:
+- In the Terminal/CLI, connect to Heroku using this command: `heroku login -i`
+- Set the remote for Heroku: `heroku git:remote -a <app_name>` (replace app_name with your app, without the angle-brackets)
+- After performing the standard Git `add`, `commit`, and `push` to GitHub, you can now type: `git push heroku main`
+
+The frontend terminal should now be connected and deployed to Heroku.
+
+## Heroku and Django
+
+This section covers the interaction between HEroku and Django in more detail than the Heroku section above.
+
+- Type `pip3 install dj_database_url` into the terminal followed by `pip3 install psycopg2-binary`.
+- Ensure to freeze requirements by typing `pip3 freeze > requirements.txt`.
+- In settings.py within add the following line to the top of the file:  
+    ```
+    import dj_database_url
+    ```
+- Further down the file at the database settings, comment out the default configuration and insert the following code beneath the commented out default:  
+    ```
+    DATABASES = {
+        'default': dj_database_url.parse(*ENTER DATABASE URL HERE*)
+    }
+    ```
+- Note: The database URL will be located in the Heroku config vars.
+- Migrations will need to be run again as you are now connected to a new database. This is done by running `python3 manage.py makemigrations --dry-run` followed by `python3 manage.py makemigrations` then `python3 manage.py migrate --plan` and finally `python3 manage.py migrate`.
+- Create a new SuperUser for the new database via `python3 manage.py createsuperuser`.
+- Before commiting, ensure that the Postgres Database is moved to env.py to prevent it being exposed in version control.
+- Add an if statement in settings.py to run the postgres database when using the app on Heroku or sqlite if not as shown below:
+    ```
+    if 'DATABASE_URL' in os.environ:
+        DATABASES = {
+            'default': dj_database_url.parse(os.environ.get('DATABASE_URL'))
+        }
+    else:
+        DATABASES = {
+            'default': {
+                'ENGINE': 'django.db.backends.sqlite3',
+                'NAME': BASE_DIR / 'db.sqlite3',
+            }
+    }
+    ```
+- Type `pip3 install gunicorn` into the terminal and freeze requirements again by typing  `pip3 freeze > requirements.txt`.
+- Create the 'Procfile' in your project's root directpry and and inside insert the code:  
+    `web: gunicorn **'INSERT PROJECT NAME'**.wsgi:application`.
+- In Heroku config vars add a key of DISABLE_COLLECTSTATIC with corresponding value of  1 to prevent Heroku collecting static files when you deploy.
+- In settings.py, find ALLOWED_HOSTS and insert the url to your app, followed by 'localhost' as shown below:     
+    ```
+    ALLOWED_HOSTS = ['INSERT_PROJECT_NAME.herokuapp.com', 'localhost']
+    ```
+-  To autmatically deploy to Heroku, see steps highlighted in 'Heroku Deployment' above.
+
 
 # Stripe Set Up
 
@@ -309,68 +398,6 @@ The next step is to connect to Django:
 # Deployment
 
 The live deployed application can be found at [Just-Tri-It](https://just-tri-it.herokuapp.com/).
-
-## Heroku Deployment
-
-This project uses [Heroku](https://www.heroku.com), a platform as a service (PaaS) that enables developers to build, run, and operate applications entirely in the cloud.
-
-Deployment steps are as follows, after account setup:
-
-- Select *New* in the top-right corner of your Heroku Dashboard, and select *Create new app* from the dropdown menu.
-- Your app name must be unique, and then choose a region closest to you (EU or USA), and finally, select *Create App*.
-
-![Heroku App Set-Up](documentation/deployment/atletico-crud-heroku-initial-steps.jpg)
-
-- From the new app *Settings*, click *Reveal Config Vars*, and set the following key/value pairs:
-  - `IP` 0.0.0.0
-  - `PORT` 5000
-
-  - `DATABASE_URL` (this comes from the _Resources_ tab, you can get your own Postgres Database using the Free Hobby Tier)
-    - Click on the _Resources_ tab.
-    - Search for Postgres in the 'Add-ons' search bar.
-    - Select Heroku Postgres as shown in the screenshot below.
-
-![Heroku Postgres Add-On](documentation/deployment/atletico-crud-heroku-postgres-add-on.png)
-
-  - `SECRET_KEY` (this can be any random secret key)
-
-The below screenshot shows the completed config vars page on Heroku with sensitive information in the value boxes redacted.
-
-![Set Config Vars](documentation/deployment/atletico-crud-heroku-config-vars-update.png)
-
-Heroku needs two additional files in order to deploy properly.
-- requirements.txt
-- Procfile
-
-You can install this project's requirements (where applicable) using: `pip3 install -r requirements.txt`. If you have your own packages that have been installed, then the requirements file needs updated using: `pip3 freeze --local > requirements.txt`
-
-![Freeze requirements.txt](documentation/deployment/atletico-crud-heroku-freeze-requirements.png)
-
-The Procfile can be created with the following command: `echo web: python app.py > Procfile`
-
-![Create Procfile](documentation/deployment/atletico-crud-heroku-procfile.png)
-
-For Heroku deployment, follow these steps to connect your GitHub repository to the newly created app:
-
-Either:
-- Connect Heroku and GitHub.
-
-![Connect Heroku and GitHub ](documentation/deployment/atletico-crud-heroku-connect-to-github.png)
-
-- Then select "Automatic Deployment" from the Heroku app.
-
-![Enable Auto Deployment](documentation/deployment/atletico-crud-heroku-enable-auto-deploys.png)
-
-- Click the _Deploy Branch_ button.
-
-![App Successfully Deployed](documentation/deployment/atletico-crud-heroku-successfully-deployed-app.png)
-
-Or:
-- In the Terminal/CLI, connect to Heroku using this command: `heroku login -i`
-- Set the remote for Heroku: `heroku git:remote -a <app_name>` (replace app_name with your app, without the angle-brackets)
-- After performing the standard Git `add`, `commit`, and `push` to GitHub, you can now type: `git push heroku main`
-
-The frontend terminal should now be connected and deployed to Heroku.
 
 ## Local Deployment
 
