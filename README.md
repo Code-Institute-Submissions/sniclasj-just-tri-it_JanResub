@@ -39,8 +39,6 @@ I selected the colour scheme by selecting a different colour to represent each o
 
 ![Coolors](documentation/testing/jti-coolors.png)
 
-## Typography
-
 # Initial Visual ERD
 
 ![Initial ERD](documentation/testing/just-tri-it-initial-erd.png)
@@ -74,26 +72,33 @@ The content of the navbar collapses into a side-nav on medium screen sizes and b
 
 The site displays a banner for promotional messages on all pages immediately below the navbar on all screen sizes.
 
-### Mini Triathlon Icons
-
 ### Filter Buttons Category and Condition
 
-### Images of Store Owner Completing a Triathlon
+These buttons allow the listings to be filtered by category or by their condition.
+
+![Navbar, Banner, Filter Buttons](documentation/testing/navbar-banner-filter-buttons.png)
 
 ### Add, Edit, Delete Listing Buttons (Own Listings if Seller, All Listings if SuperUser)
 
-### Category/Condition Admin (If SuperUser)
+If a user has seller status, they are able to add a listing as well as edit/delete any listing they have uploaded.
+
+![User Story K](documentation/testing/user-stroy-k.png)
+
+If a user is a superuser, they are able to add a listing as well as edit/delete any listing uploaded by any user.
+
+![User Story L](documentation/testing/user-stroy-l.png)
 
 ### Add, Edit, Delete Category/Condition (If SuperUser)
 
+If a user is a superuser, they can also add/edit/delete categories and conditions.
+
+![User Story N](documentation/testing/user-stroy-n.png)
+
 ### Apply/Remove 'Seller Status' (If SuperUser)
 
-### Add Listings to Basket
+If a user is a superuser, they can amend another user's seller status.
 
-### Checkout
-
-### Save Checkout Details to Profile
-
+![User Story M](documentation/testing/user-stroy-m.png)
 
 ### Footer
 
