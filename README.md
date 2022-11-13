@@ -106,7 +106,7 @@ The footer displays on all pages across all screen sizes and is always fixed to 
 
 ### Favicon
 
-![Favicon]()
+![Favicon](static/images/favicon.png)
 
 ## Features Left to Implement
 
