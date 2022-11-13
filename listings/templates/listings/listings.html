@@ -24,6 +24,8 @@
                 <li class="collection-item avatar">
                     {% if listing.image %}
                     <img src="{{ listing.image.url }}" alt="{{ listing.name }}" class="circle">
+                    {% else %}
+                    <img src="{% static 'images/sj-lcw-bike.jpg' %}" alt="No Listing Image" class="circle">
                     {% endif %}
                     <span class="title">
                         <a href="{% url 'listing_info' listing.id %}">{{ listing.name }}</a>
