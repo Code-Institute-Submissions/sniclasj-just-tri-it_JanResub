@@ -130,16 +130,181 @@ The footer displays on all pages across all screen sizes and is always fixed to 
 - [JavaScript](https://en.wikipedia.org/wiki/JavaScript) - used to initialise website events.
 - [JQuery](https://en.wikipedia.org/wiki/JQuery) - used to initialise website events.
 - [CSS](https://en.wikipedia.org/wiki/CSS) - used to style the website.
+- [Stripe](https://stripe.com/gb) - used to simulate taking payments on the site.
 
 # Testing
 
 To view all testing documentation, please refer to [TESTING.md](TESTING.md).
 
+# Django Set Up
+
+To install django, follow these steps:
+
+- In your IDE type `pip3 install django`.
+- To name your project type `django-admin startproject *Insert Project Name*`.
+- Create a gitignore file via `touch .gitignore`.
+- Add any files that should not be commited to version history to gitignore.
+- Run `python3 manage.py runserver` in the terminal. This should expose port 8000 and if the steps have been followed correctly, Django's success page will display.
+- Perform the initial migrations by running `python3 manage.py makemigrations --dry-run` followed by `python3 manage.py makemigrations` then `python3 manage.py migrate --plan` and finally `python3 manage.py migrate`.
+- Create a superuser to gain access to the admin panel via `python3 manage.py createsuperuser`.
+- Create a username and password along with an option of including an email address.
+- Make the initial commit to github.
+
+#### All Auth
+
+All Auth is Django's package for managing sign up, log in, log out etc. The steps to install can be found [here](https://django-allauth.readthedocs.io/en/latest/installation.html).
+
 # Stripe Set Up
 
 
 
-# AWS Set Up
+
+
+# AWS/S3/IAM Set Up
+
+AWS is used to store the static and media files for the project. The steps to achieve this are detailed below:
+
+The first step is S3:
+
+- Sign up to AWS [here](https://aws.amazon.com/).
+- Navigate to S3.
+- In S3, click 'Create Bucket'.
+- Name the bucket after your project and select the closest region to you
+- Under 'Object Ownership' select 'ACLs enabled' and leave the Object Ownership as 'Bucket Owner Preferred'. 
+- Ensure that public access is not blocked and acknowledge that the bucket will be made public.
+- Click 'Create Bucket'.
+- Navigate to the bucket's properties tab and find 'Static Website Hosting'.
+- Click 'Edit' and ensure the Static website hosting option is 'enabled'.
+- Copy the default values for the index and error documents and save.
+- Navigate to the permissions tab, and on to the cross-origin resource sharing (CORS) section, click 'Edit' and paste in the following code:  
+    ```
+    [
+        {
+            "AllowedHeaders": [
+            "Authorization"
+            ],
+            "AllowedMethods": [
+            "GET"
+            ],
+            "AllowedOrigins": [
+            "*"
+            ],
+            "ExposeHeaders": []
+        }
+    ]
+    ```
+- Navigate to the 'Bucket Policy' section, click 'Edit' and select 'Policy Generator'.
+- This should open a 'Policy Generator Page' where you should select 'S3 Bucket Policy'. Inside 'Principle', allow all by typing a *.
+- From the 'Actions' dropdown menu select 'Get Object'.
+- Return to the previous tab to copy the Bucket ARN number before pasting into the ARN field on Policy Generator.
+- Once completed, click 'Add Statement' and 'Generate Policy'.
+- Copy the generated policy and paste it into the bucket policy editor.
+- Ensure to add a '/*' at the end of the resource key to allow access to all bucket resources.
+- Navigate to Access Control List (ACL) and click 'Edit'.
+- Navigate to 'Everyone (public access)', tick the 'list' checkbox.
+- Tick the warning box and 'Save'.
+
+The next step is IAM:
+
+- The bucket is now created so the next step is to cretate a user to utilise it.
+- Search for IAM and navigate to the IAM page.
+- Click 'User Groups', then click 'Create Group'.
+- Name the group 'manage-*Insert Project Name*'
+- Click 'Create Group'.
+- Select 'Policies' and 'Create Policy'.
+- Navigate to the JSON tab and select 'import managed policy'. Search for 'S3', select 'AmazonS3FullAccess' and import.
+- Copy the ARN number from the previously created bucket. Use this to update the Resource Key on the policy to include your bucket ARN.
+- Copy this ARN and paste it below the the ARN but this time add /* at the end.
+- The JSON tab will look as follows:
+    ```
+    {
+      {
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Action": [
+                "s3:*",
+                "s3-object-lambda:*"
+            ],
+            "Resource": [
+                "arn:aws:s3:::YOUR_INPUT_HERE",
+                "arn:aws:s3:::YOUR_INPUT_HERE/*"
+            ]
+        }
+    ]
+}
+    ```
+
+- Click 'Next: Tags', 'Next: Review' and name the policy.
+- Click 'Create policy'. 
+- The created policy will now be visible and ready to attach to the User Group created initially.
+- Navigate back to the previously created User Group, on the permissions tab click 'Add permission' and from the dropdown click 'Attach policies'.
+- Select the policy created and click 'Add permissions'.
+- Now, click'Add user', tick 'Programmatic Access' and click 'Next: Permissions'. 
+- Choose the group with the created policy attached, click 'Next: Tags', 'Next: Review', then 'Create User'.
+- Download the .csv file. This contains the user's access key and secret access key. Do not lose this downloaded file!
+
+The next step is to connect to Django:
+
+- Install Boto3 and Django Storages by doing the following:
+    ```
+    pip3 install boto3
+    pip3 install django-storages
+    ```
+- Freeze requirements. 
+    ```
+    pip3 freeze > requirements.txt
+    ```
+- Add 'storages' to the installed apps section inside the settings.py file within the main app.
+- Next, we will need to add some additional settings to the same file to let django know what bucket it's communicating with. 
+- Add the following to settings.py: 
+    ```
+    if 'USE_AWS' in os.environ:
+        AWS_STORAGE_BUCKET_NAME = 'INSERT BUCKET NAME'
+        AWS_S3_REGION_NAME = 'INSERT REGION'
+        AWS_ACCESS_KEY_ID = os.environ.get('AWS_ACCESS_KEY_ID')
+        AWS_SECRET_ACCESS_KEY = os.environ.get('AWS_SECRET_ACCESS_KEY')
+    ```
+- Add AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY in Heroku's config vars along with the corresponding information from the downloaded.csv file.you will need to add some keys with values that were downloaded earlier in the CSV file.
+- Add USE_AWS with the corresponding value True.
+- Remove DISABLE_COLLECTSTATIC from the config vars.
+- Return to the if statement in settings.py and inside the statement add the following so that Django is aware of where static files will now be stored. 
+    ```
+    AWS_S3_CUSTOM_DOMAIN = f'{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com'
+    ```
+- Next, create a file called 'custom_storages.py' in the root directory of your project.
+- Add the following code to the file:  
+    ```
+    from django.conf import settings
+    from storages.backends.s3boto3 import S3Boto3Storage
+
+    class StaticStorage(S3Boto3Storage):
+        location = settings.STATICFILES_LOCATION
+        
+    class MediaStorage(S3Boto3Storage):
+    location = settings.MEDIAFILES_LOCATION
+    ```
+- Define STATICFILES_LOCATION and MEDIAFILES_LOCATION in settings.py file by adding the following code:
+    ```
+    STATICFILES_STORAGE = 'custom_storages.StaticStorage'
+    STATICFILES_LOCATION = 'static'
+    DEFAULT_FILE_STORAGE = 'custom_storages.MediaStorage'
+    MEDIAFILES_LOCATION = 'media'
+    ```
+- Now, return to the if statement in settings.py and add: 
+    ```
+    STATIC_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{STATICFILES_LOCATION}/'
+    MEDIA_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{MEDIAFILES_LOCATION}/'
+
+    AWS_S3_OBJECT_PARAMETERS = {
+        'Expires': 'Thu, 31 Dec 2099 20:00:00 GMT',
+        'CacheControl': 'max-age=94608000',
+    }
+    ```
+- The static folder should already be in the S3 bucket but the media folder may need to be added manually.
+- In S3, click 'Create folder', name it media and 'Save'. 
+- Upload any files which have been uploaded to the local media folder to the S3 media folder and ensure that 'public-read access' permission is ticked prior to the upload. 
 
 # Deployment
 
