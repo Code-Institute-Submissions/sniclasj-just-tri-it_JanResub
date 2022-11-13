@@ -168,4 +168,12 @@ Due to the numerous number of pages available to test, spot checks were conducte
 
 # Error Handling
 
+I am relying on Django's built in error handling as I had to prioritise other aspects of the site's functionality.
+
 # Unfixed Bugs
+
+-	Country dropdown on forms is a different colour to other fields, needs a CSS and JS fix.
+-	Allauth pages are not formatted in the same style as the rest of the site.
+-	If a product is deleted, the Order History on the Athlete Profile page just shows a blank space where the listing name shoud be along with a cost of £0.
+-	I made an error at some point in the coding process and the loading-spinner icon no longer overlayed on the page whilst awaiting for checkout success. It was always displaying on the checkout page. It requires a CSS and JS fix but I had to prioritise other functionality over solving this bug.
+- The 'Clear' button shows next to a listing's image but it has no functionality. Again, this needs a CSS/JS fix but I had to prioritise other functionality over this.
