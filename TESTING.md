@@ -164,8 +164,6 @@ Due to the numerous number of pages available to test, spot checks were conducte
 
 Due to the numerous number of pages available to test, spot checks were conducted on XXX. The results are summarised in the screenshot below.
 
-
-
 # Error Handling
 
 # Unfixed Bugs
