@@ -245,8 +245,37 @@ This section covers the interaction between HEroku and Django in more detail tha
 
 # Stripe Set Up
 
+Stripe is required to handle the checkout process when a simulated payment is made. A Strip account can be created [here](https://stripe.com/en-gb).
 
+## Payments
 
+Follow [this](https://stripe.com/docs/payments/accept-a-payment#web-collect-card-details) guide for information on how to set up Stripe payments.
+
+## Webhooks
+
+The following section will explain how to set-up Webhooks.
+
+- Sign into stripe and click 'Developers'.
+- Click on 'Webhooks' and then 'Add Endpoint'.
+- Add your deployed Heroku app url followed by /checkout/wh/ as shown below:  
+    ```
+    https://INSERT-APP-NAME.herokuapp.com/checkout/wh/
+    ```
+- Ensure the Webhook is listening for all events by ensuring all events are selected before clicking 'Add endpoint'.
+- The Webhook is now created and the generated secret key needs to be added to the Heroku config vars.
+- Add the Webhook secret key alongside the `STRIPE_PUBLIC_KEY` and `STRIPE_SECRET_KEY` generated when setting up Stripe to take payments. The Stripe key/value pairs in Heroku config vars will look like the following:  
+    ```
+    STRIPE_PUBLIC_KEY = 'INSERT STRIPE PUBLIC KEY'
+    STRIPE_SECRET_KEY = 'INSERT STRIPE SECRET KEY'
+    STRIPE_WH_SECRET = 'INSERT STRIPE WEBHOOK SECRET KEY'
+    ```
+- In settings.py within main, add the following code at the bottom of the file:  
+    ```
+    STRIPE_PUBLIC_KEY = os.getenv('STRIPE_PUBLIC_KEY', '')
+    STRIPE_SECRET_KEY = os.getenv('STRIPE_SECRET_KEY', '')
+    STRIPE_WH_SECRET = os.getenv('STRIPE_WH_SECRET', '')
+    ```
+- Ensure env.py contains the values of the keys you want to keep out of version control and that env.py is in gitignore.
 
 
 # AWS/S3/IAM Set Up
