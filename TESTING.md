@@ -2,11 +2,19 @@
 
 # Browser Compatibility
 
+Due to the numerous number of pages available to test, a different page will be showcased for the different browsers below to demonstrate browser compatibility.
+
 ## Chrome
+
+![Chrome](documentation/testing/jti-chrome.png)
 
 ## Edge
 
+![Edge](documentation/testing/jti-edge.png)
+
 ## Safari (Mobile)
+
+![Safari](documentation/testing/jti-safari.png)
 
 # Code Validation
 
