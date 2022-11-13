@@ -2,7 +2,6 @@
 
 # Just Tri It
 
-
 # User Stories
 
 There are three types of user on the site: 
@@ -133,6 +132,7 @@ The footer displays on all pages across all screen sizes and is always fixed to 
 - [JQuery](https://en.wikipedia.org/wiki/JQuery) - used to initialise website events.
 - [CSS](https://en.wikipedia.org/wiki/CSS) - used to style the website.
 - [Stripe](https://stripe.com/gb) - used to simulate taking payments on the site.
+- [PostgresQL](https://www.postgresql.org/) - used as database on live site.
 
 # Testing
 
