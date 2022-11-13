@@ -2,9 +2,6 @@
 
 # Just Tri It
 
-![Am I Responsive]()
-
-Just Tri It is an online marketplace where users can sign up as ‘athletes’ to purchase triathlon gear. Admin pending, users can also become ‘sellers’ allowing them to list their used triathlon gear.
 
 # User Stories
 
@@ -48,9 +45,7 @@ I selected the colour scheme by selecting a different colour to represent each o
 
 ![Initial ERD](documentation/testing/just-tri-it-initial-erd.png)
 
-# Final Visual ERD
-
-![Final Visual ERD]()
+This is an initial mock-up of the data structure completed at the start of the project. The models evolved as the project progressed however this Initial Visual ERD is a fairly accurate representation of how the data is structured in the project.
 
 # Wireframes
 
@@ -110,9 +105,9 @@ The footer displays on all pages across all screen sizes and is always fixed to 
 
 ## Features Left to Implement
 
-- xxx
-- xxx
-- xxx
+- I would like to develop the store into an eBay style store with ratings for Buyers/Sellers etc.
+- Customised Error Handling page.
+- Apply my own formatting to the allauth pages.
 
 # Technologies Used
 
@@ -462,33 +457,18 @@ Certain images are only deployed on the Heroku app as they are stored in AWS as 
 
 ## Content
 
+- The whole foundation of this project is built from the _Boutique Ado_ walkthrough project in the [Code Institute LMS](https://learn.codeinstitute.net/courses/course-v1:CodeInstitute+FSF_102+Q1_2020/courseware/4201818c00aa4ba3a0dae243725f6e32/d3188bf68530497aa5fba55d07a9d7d7/). I added variation with regards to data models and admin level differences.
+- Utilising [Iris Smok's Joyful Bookstore](https://github.com/Iris-Smok/JoyfulBookstore-PP5/blob/main/README.md#deployment) README helped give structure to my README's Django, Heroku, Stripe and AWS Set Up sections.
+
+
 ## Media
+- [Maru Float](https://www.amazon.co.uk/Maru-Unisexs-AT7125-Kickboard-Blue/dp/B07M96N751/ref=asc_df_B07M96N751/?tag=googshopuk-21&linkCode=df0&hvadid=310533975996&hvpos=&hvnetw=g&hvrand=12858822124470543645&hvpone=&hvptwo=&hvqmt=&hvdev=c&hvdvcmdl=&hvlocint=&hvlocphy=9046490&hvtargid=pla-649639443724&psc=1)
+- [Maru Fins](https://www.amazon.co.uk/Maru-Training-Fins-Green-Black/dp/B00HH9R9JW/ref=asc_df_B00HH9R9JW/?tag=googshopuk-21&linkCode=df0&hvadid=372477584543&hvpos=&hvnetw=g&hvrand=9629017406546423811&hvpone=&hvptwo=&hvqmt=&hvdev=c&hvdvcmdl=&hvlocint=&hvlocphy=9046490&hvtargid=pla-858784746204&psc=1&tag=&ref=&adgrpid=77599839998&hvpone=&hvptwo=&hvadid=372477584543&hvpos=&hvnetw=g&hvrand=9629017406546423811&hvqmt=&hvdev=c&hvdvcmdl=&hvlocint=&hvlocphy=9046490&hvtargid=pla-858784746204)
+- [Kask Helmet](https://www.highonbikes.com/products/kask-rapido-cycling-helmet?currency=GBP&variant=40794367131810&utm_medium=cpc&utm_source=google&utm_campaign=Google%20Shopping&gclid=Cj0KCQiApb2bBhDYARIsAChHC9vrgq24Y1cg7VA0fUtKFspFb-KJYAaydsQxhVS3lFGe8bmiyAX0zyQaAjgwEALw_wcB)
+- Photos of me participating in Long Course Weekend Wales 2019 - [FinisherPix](https://www.finisherpix.com/en/events)
 
 
 ## Acknowledgements
 I would like to thank my Code Institute mentor Tim Nelson for his support during the course of this project.
 
 I would also like to thank the Code Institute tutor team for the assistance provided during the course of this project.
-
-# Bug
-Succesfully check out, click link to go back to listings, go to check out again but get:
-
-InvalidOperation at /checkout/
-[<class 'decimal.InvalidOperation'>]
-Request Method:	POST
-Request URL:	http://localhost:8000/checkout/
-Django Version:	3.2.15
-Exception Type:	InvalidOperation
-Exception Value:	
-[<class 'decimal.InvalidOperation'>]
-Exception Location:	/workspace/.pip-modules/lib/python3.8/site-packages/django/db/backends/utils.py, line 235, in format_number
-Python Executable:	/home/gitpod/.pyenv/versions/3.8.11/bin/python3
-Python Version:	3.8.11
-Python Path:	
-['/workspace/just-tri-it',
- '/home/gitpod/.pyenv/versions/3.8.11/lib/python38.zip',
- '/home/gitpod/.pyenv/versions/3.8.11/lib/python3.8',
- '/home/gitpod/.pyenv/versions/3.8.11/lib/python3.8/lib-dynload',
- '/workspace/.pip-modules/lib/python3.8/site-packages',
- '/home/gitpod/.pyenv/versions/3.8.11/lib/python3.8/site-packages']
-Server time:	Sat, 15 Oct 2022 14:30:04 +0000
