@@ -109,6 +109,7 @@ The footer displays on all pages across all screen sizes and is always fixed to 
 - Customised Error Handling page.
 - Apply my own formatting to the allauth pages.
 - Sending real emails.
+- Conduct unit testing.
 
 # Technologies Used
 
