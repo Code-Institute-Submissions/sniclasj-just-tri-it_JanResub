@@ -164,7 +164,20 @@ Due to the numerous number of pages available to test, spot checks were conducte
 
 # Responsiveness
 
-Due to the numerous number of pages available to test, spot checks were conducted on XXX. The results are summarised in the screenshot below.
+Due to the numerous number of pages available to test, spot checks were conducted on the Home page, the Listings Page and the Listings Info page. The results are summarised in the screenshots below.
+
+## Home Responsive
+
+![Home Responsive](documentation/testing/jti-home-responsive.jpg)
+
+## Listings Responsive
+
+![Listings Responsive](documentation/testing/jti-listings-responsive.jpg)
+
+## Listing Info Responsive
+
+![Listing Info Responsive](documentation/testing/jti-listing_info-responsive.jpg)
+
 
 # Error Handling
 
