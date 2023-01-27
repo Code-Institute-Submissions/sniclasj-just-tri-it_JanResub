@@ -8,6 +8,7 @@ body {
 
   main {
     flex: 1 0 auto;
+    margin-bottom: 3em !important;
   }
 
 .xs-btn {
@@ -37,4 +38,8 @@ nav .brand-logo {
   width: 150px;
   height: 200px;
   border-radius: 35%;
+}
+
+.msg-row {
+  margin-bottom: 0 !important;
 }
