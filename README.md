@@ -112,7 +112,6 @@ The footer displays on all pages across all screen sizes and is always fixed to 
 - I would like to develop the store into an eBay style store with ratings for Buyers/Sellers etc.
 - Customised Error Handling page.
 - Apply my own formatting to the allauth pages.
-- Sending real emails.
 - Conduct unit testing.
 
 # Technologies Used
